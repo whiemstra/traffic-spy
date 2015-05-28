@@ -28,6 +28,13 @@ class SourceRegistrationTest < Minitest::Test
     assert_equal 1, (ende_count - init_count)
   end
 
+  # def test_it_posts_to_sources_with_valid_data
+  #   post '/sources', {identifier: "jumpstartlab", rootUrl: "http://jumpstartlab.com" }
+  #
+  #   assert_equal 200, last_response.status
+  #   assert_equal "{'identifier':'jumpstartlab'}", last_response.body
+  # end
+
   def test_invalid_registration_with_no_identifier
     init_count = Source.count
 
