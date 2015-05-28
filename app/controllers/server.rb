@@ -16,7 +16,7 @@ module TrafficSpy
 
       status source.validate[:status]
       body source.validate[:body]
-      
+
     end
 
     post '/sources/:identifier/data' do |identifier|
