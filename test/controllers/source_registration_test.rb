@@ -11,7 +11,6 @@ class SourceRegistrationTest < ControllerTest
     ende_count = SourceValidator.count
 
     assert_equal 200, last_response.status
-    # binding.pry
     assert_equal "{'identifier':'anIdentifier'}", last_response.body
     assert_equal 1, (ende_count - init_count)
   end
