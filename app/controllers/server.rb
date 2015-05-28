@@ -12,19 +12,11 @@ module TrafficSpy
     end
 
     post '/sources' do
-      source = Source.new(identifier: params[:identifier], rooturl: params[:rootUrl])
-      if source.save
-        status 200
-        body "{'identifier':'#{source.identifier}'}"   #"Registration complete."
-      elsif source.errors.full_messages.include?("Identifier has already been taken")
-        status 403
-        body source.errors.full_messages
-      else
-        status 400
-        body source.errors.full_messages
-      end
-      # params (identifier rooturl)
-      # curl -i -d 'identifier=(thing)&rooturl=(thing)' http://ourapp:port/sources
+      source = SourceValidator.new(identifier: params[:identifier], rooturl: params[:rootUrl])
+
+      status source.validate[:status]
+      body source.validate[:body]
+
     end
 
     post '/sources/:identifier/data' do |identifier|
