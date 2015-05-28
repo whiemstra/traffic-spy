@@ -1,24 +1,27 @@
 require 'json'
 
 class PayloadValidator < Payload
+  attr_reader :identifier
 
-  def initialize(data)
-    @payload = Payload.new(data)
+  def initialize(data, identifier)
+    @hashed = Digest::SHA1.hexdigest(data)
+    JSON.parse(data)
+    @payload = Payload.new(requested_at: data["requestedAt"])
+    @identifier = identifier
   end
 
   def validate
-    yyy = Digest::SHA1.hexdigest(params[:payload])
-    if x = Source.find_by_identifier(identifier)
-      if x.payloads.find_by_payhash(yyy)
-        status 403
-        body "Already Received Request"
+    if identified_source = Source.find_by_identifier(identifier)
+      if identified_source.payloads.find_by_payhash(@hashed)
+        result = { status: 403, body: "Already Received Request" }
       else
-        x.payloads.create(payhash: yyy)
-        status 200
+        identified_source.payloads.create(payhash: @hashed)
+        result = { status: 200, body: ""}
       end
     else
-      status 403
-      "Application Not Registered"
+      result = { status: 403, body: "Application Not Registered"}
     end
+    result
   end
 end
+
