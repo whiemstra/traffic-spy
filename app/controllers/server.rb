@@ -1,4 +1,3 @@
-require 'pry'
 module TrafficSpy
   class Server < Sinatra::Base
     get '/' do
@@ -10,11 +9,10 @@ module TrafficSpy
     end
 
     post '/sources' do
-      # binding.pry
-      source = Source.new(params[:source])
+      source = Source.new(identifier: params[:identifier], rooturl: params[:rootUrl])
       if source.save
         status 200
-        body "Registration complete."
+        body "{'identifier':'#{source.identifier}'}"
       elsif source.errors.full_messages.include?("Identifier has already been taken")
         status 403
         body source.errors.full_messages
