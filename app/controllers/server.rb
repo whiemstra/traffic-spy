@@ -1,3 +1,4 @@
+require 'pry'
 module TrafficSpy
   class Server < Sinatra::Base
     get '/' do
@@ -9,6 +10,7 @@ module TrafficSpy
     end
 
     post '/sources' do
+      # binding.pry
       source = Source.new(params[:source])
       if source.save
         status 200

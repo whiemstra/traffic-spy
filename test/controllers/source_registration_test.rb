@@ -17,6 +17,7 @@ class SourceRegistrationTest < Minitest::Test
 
   def test_valid_registration_with_identifier_and_rooturl
     init_count = Source.count
+    
 
     post('/sources', { source: { identifier: "anIdentifier", rooturl: "some/root/url"} } )
 
