@@ -16,8 +16,7 @@ class PayloadValidator #< Payload
         result = { status: 403, body: "Already Received Request" }
       else
         identified_source.payloads.create(normalized_payload)
-        result = { status: 200, body: "success"}
-        # binding.pry
+        result = { status: 200, body: "Success"}
       end
     else
       result = { status: 403, body: "Application Not Registered"}

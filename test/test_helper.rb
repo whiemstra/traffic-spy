@@ -1,4 +1,6 @@
 ENV["RACK_ENV"] ||= "test"
+require 'simplecov'
+SimpleCov.start
 
 require 'bundler'
 Bundler.require
@@ -12,8 +14,9 @@ DatabaseCleaner.strategy = :truncation, {except: %w[public.schema_migrations]}
 
 Capybara.app = TrafficSpy::Server
 
-class ControllerTest < Minitest::Test
+class Minitest::Test
   include Rack::Test::Methods
+  include Capybara::DSL
 
   def app
     TrafficSpy::Server
@@ -28,19 +31,4 @@ class ControllerTest < Minitest::Test
   end
 end
 
-class ModelTest < Minitest::Test
-  include Rack::Test::Methods
-
-  def app
-    TrafficSpy::Server
-  end
-
-  def setup
-    DatabaseCleaner.start
-  end
-
-  def teardown
-    DatabaseCleaner.clean
-  end
-end
 
