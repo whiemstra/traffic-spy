@@ -1,7 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/erikwithak/traffic-spy/config/environment.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/config/environment.rb": [
         null,
         1,
         1,
@@ -29,7 +29,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/controllers/server.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/controllers/server.rb": [
         1,
         1,
         null,
@@ -78,13 +78,12 @@
         null,
         1,
         0,
-        null,
         null,
         null,
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/payload.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/payload.rb": [
         1,
         1,
         1,
@@ -104,7 +103,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/payload_validator.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/payload_validator.rb": [
         1,
         1,
         null,
@@ -154,7 +153,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/source.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/source.rb": [
         null,
         1,
         1,
@@ -164,7 +163,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/source_validator.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/source_validator.rb": [
         1,
         null,
         1,
@@ -185,7 +184,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/config/database.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/config/database.rb": [
         null,
         1,
         1,
@@ -201,7 +200,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/test/controllers/source_registration_test.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/controllers/source_registration_test.rb": [
         1,
         1,
         null,
@@ -256,53 +255,52 @@
         1,
         1,
         1,
+        null,
+        null
+      ],
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/models/payload_test.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
         null,
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/test/models/payload_test.rb": [
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/erikwithak/traffic-spy/test/models/payload_validator_test.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/models/payload_validator_test.rb": [
         1,
         null,
         1,
@@ -355,6 +353,6 @@
         null
       ]
     },
-    "timestamp": 1432938195
+    "timestamp": 1432938750
   }
 }
