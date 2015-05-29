@@ -7,8 +7,6 @@ class PayloadValidator #< Payload
   def initialize(data, identifier)
     @hashed = Digest::SHA1.hexdigest(data)
     @data = JSON.parse(data)
-    # JSON.parse(data)
-    # @payload = Payload.new(requested_at: data["requestedAt"])
     @identifier = identifier
   end
 
@@ -17,7 +15,7 @@ class PayloadValidator #< Payload
       if identified_source.payloads.find_by_payhash(@hashed)
         result = { status: 403, body: "Already Received Request" }
       else
-        identified_source.payloads.create(normalized_payload)   #changed.create to .new to set up the table values
+        identified_source.payloads.create(normalized_payload)
         result = { status: 200, body: "success"}
         # binding.pry
       end
