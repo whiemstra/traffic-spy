@@ -7,10 +7,6 @@ module TrafficSpy
       erb :index
     end
 
-    get '/sources' do
-      erb :sources
-    end
-
     post '/sources' do
       source = SourceValidator.new(identifier: params[:identifier], rooturl: params[:rootUrl])
 
@@ -21,13 +17,16 @@ module TrafficSpy
     post '/sources/:identifier/data' do |identifier|
       payload = PayloadValidator.new(params["payload"], identifier)
 
-      status payload.validate[:status]
-      body payload.validate[:body]
+      payload.validate
+
+      status payload.result[:status]
+      body payload.result[:body]
     end
 
     get '/sources/:identifier' do |identifier|
       source = Source.find_by_identifier(identifier)
       erb :appdetails
+
     end
 
     # get '/sources/:identifier/url/(:relative_path)' do |identifier, relative_path|   #dynamic route segments (article/1)
