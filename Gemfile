@@ -7,6 +7,8 @@ gem 'sinatra-activerecord'
 gem 'useragent'
 gem 'pry'
 gem 'simplecov'
+gem 'tilt'
+require 'tilt/erb'
 
 group :development, :test do
   gem 'shotgun'

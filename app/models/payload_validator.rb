@@ -2,7 +2,8 @@ require 'json'
 require 'pry'
 
 class PayloadValidator #< Payload
-  attr_reader :identifier
+  attr_reader :identifier,
+              :result
 
   def initialize(data, identifier)
     @hashed = Digest::SHA1.hexdigest(data)
@@ -13,15 +14,15 @@ class PayloadValidator #< Payload
   def validate
     if identified_source = Source.find_by_identifier(identifier)
       if identified_source.payloads.find_by_payhash(@hashed)
-        result = { status: 403, body: "Already Received Request" }
+        @result = { status: 403, body: "Already Received Request" }
       else
         identified_source.payloads.create(normalized_payload)
-        result = { status: 200, body: "Success"}
+        @result = { status: 200, body: "Success"}
       end
     else
-      result = { status: 403, body: "Application Not Registered"}
+      @result = { status: 403, body: "Application Not Registered"}
     end
-    result
+    @result
   end
 
   private
