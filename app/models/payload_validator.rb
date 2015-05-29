@@ -17,9 +17,9 @@ class PayloadValidator #< Payload
       if identified_source.payloads.find_by_payhash(@hashed)
         result = { status: 403, body: "Already Received Request" }
       else
-        binding.pry
         identified_source.payloads.create(normalized_payload)   #changed.create to .new to set up the table values
         result = { status: 200, body: "success"}
+        # binding.pry
       end
     else
       result = { status: 403, body: "Application Not Registered"}
@@ -40,7 +40,8 @@ class PayloadValidator #< Payload
       :user_agent => @data["userAgent"],
       :resolution_width => @data["resolutionWidth"],
       :resolution_height => @data["resolutionHeight"],
-      :ip => @data["ip"]
+      :ip => @data["ip"],
+      :payhash => @hashed
     }
   end
 

@@ -1,6 +1,6 @@
 require_relative '../test_helper'
 
-class PayloadValidatorTest < Minitest::Test
+class PayloadValidatorTest < ModelTest
 
   def string_payload
     '{
