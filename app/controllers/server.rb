@@ -8,7 +8,7 @@ module TrafficSpy
     end
 
     get '/sources' do
-
+      erb :sources
     end
 
     post '/sources' do
@@ -29,6 +29,7 @@ module TrafficSpy
     not_found do
       erb :error
     end
+
   end
 end
 
