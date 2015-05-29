@@ -1,19 +1,6 @@
 require_relative '../test_helper'
 
-class ProcessingRequestsTests < Minitest::Test
-  include Rack::Test::Methods
-
-  def app
-    TrafficSpy::Server
-  end
-
-  def setup
-    DatabaseCleaner.start
-  end
-
-  def teardown
-    DatabaseCleaner.clean
-  end
+class ProcessingRequestsTests < ControllerTest
 
   # NOTE this may need some tweaks; it was not tested
   def valid_source

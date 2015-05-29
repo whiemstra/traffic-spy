@@ -12,39 +12,17 @@ module TrafficSpy
     end
 
     post '/sources' do
-      source = Source.new(identifier: params[:identifier], rooturl: params[:rootUrl])
-      if source.save
-        status 200
-        body "{'identifier':'#{source.identifier}'}"
-      elsif source.errors.full_messages.include?("Identifier has already been taken")
-        status 403
-        body source.errors.full_messages
-      else
-        status 400
-        body source.errors.full_messages
-      end
-      # params (identifier rooturl)
-      # curl -i -d 'identifier=(thing)&rooturl=(thing)' http://ourapp:port/sources
+      source = SourceValidator.new(identifier: params[:identifier], rooturl: params[:rootUrl])
+
+      status source.validate[:status]
+      body source.validate[:body]
     end
 
     post '/sources/:identifier/data' do |identifier|
-      # identifier.insert(-2, ",\"payhash\":\"#{Digest::SHA1.hexdigest(identifier)}\”")
+      payload = PayloadValidator.new(params["payload"], identifier)
 
-      yyy = Digest::SHA1.hexdigest(params[:payload])
-
-      # x = Source.find_by_identifier(identifier)
-      if x = Source.find_by_identifier(identifier) #looking for payloads that match this source
-        if x.payloads.find_by_payhash(yyy)
-          status 403
-          body "Already Received Request"
-        else
-          x.payloads.create(payhash: yyy)
-          status 200
-        end
-      else
-        status 403
-        "Application Not Registered"
-      end
+      status payload.validate[:status]
+      body payload.validate[:body]
     end
 
     not_found do
