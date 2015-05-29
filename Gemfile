@@ -6,7 +6,11 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'useragent'
 gem 'pry'
+<<<<<<< HEAD
 gem 'simplecov', :require => false, :group => :test
+=======
+gem 'simplecov'
+>>>>>>> e54cc04c739b2ff70f9267b4299e64ec8dd0e652
 
 group :development, :test do
   gem 'shotgun'
