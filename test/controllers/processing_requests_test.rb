@@ -37,12 +37,10 @@ class ProcessingRequestsTests < ControllerTest
   def test_already_received_payload
     Source.create!(identifier: 'jumpstartlab', rooturl: 'http://jumpstartlab.com')
 
-    # Send it once, it should work
     post('/sources/jumpstartlab/data', { payload: valid_source.to_json } )
 
     assert_equal 200, last_response.status
 
-    # Send it again, it should error
     post('/sources/jumpstartlab/data', { payload: valid_source.to_json })
 
     assert_equal 403, last_response.status
