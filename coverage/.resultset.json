@@ -1,7 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/erikwithak/traffic-spy/config/environment.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/config/environment.rb": [
         null,
         1,
         1,
@@ -29,7 +29,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/controllers/server.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/app/controllers/server.rb": [
         1,
         1,
         null,
@@ -40,10 +40,6 @@
         null,
         null,
         1,
-        0,
-        null,
-        null,
-        1,
         5,
         null,
         5,
@@ -60,6 +56,7 @@
         null,
         null,
         1,
+        2,
         2,
         null,
         null,
@@ -87,7 +84,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/payload.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/app/models/payload.rb": [
         1,
         1,
         1,
@@ -107,7 +104,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/payload_validator.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/app/models/payload_validator.rb": [
         1,
         1,
         null,
@@ -157,7 +154,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/source.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/app/models/source.rb": [
         null,
         1,
         1,
@@ -167,7 +164,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/source_validator.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/app/models/source_validator.rb": [
         1,
         null,
         1,
@@ -188,7 +185,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/url.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/app/models/url.rb": [
         1,
         null,
         1,
@@ -205,10 +202,10 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/app/models/user_agent.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/app/models/user_agent.rb": [
 
       ],
-      "/Users/erikwithak/traffic-spy/config/database.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/config/database.rb": [
         null,
         1,
         1,
@@ -224,7 +221,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/test/controllers/source_registration_test.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/test/controllers/source_registration_test.rb": [
         1,
         1,
         null,
@@ -283,7 +280,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/test/features/application_details_test.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/test/features/application_details_test.rb": [
         1,
         1,
         null,
@@ -316,7 +313,7 @@
         null,
         null,
         1,
-        null,
+        1,
         null,
         null,
         null,
@@ -349,7 +346,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/test/models/payload_test.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/test/models/payload_test.rb": [
         1,
         null,
         1,
@@ -391,7 +388,7 @@
         null,
         null
       ],
-      "/Users/erikwithak/traffic-spy/test/models/payload_validator_test.rb": [
+      "/Users/whitney/Desktop/turing/module_2/projects/traffic-spy/test/models/payload_validator_test.rb": [
         1,
         null,
         1,
@@ -444,6 +441,6 @@
         null
       ]
     },
-    "timestamp": 1432939296
+    "timestamp": 1432941748
   }
 }

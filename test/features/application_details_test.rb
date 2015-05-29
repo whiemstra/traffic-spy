@@ -4,11 +4,7 @@ require 'pry'
 class ApplicationDetailsTest < Minitest::Test
 
   def setup
-<<<<<<< HEAD
     Source.create!(identifier: 'turing', rooturl: 'http://turing.io')
-=======
-    x = Source.create!(identifier: 'turing', rooturl: 'http://turing.io')
->>>>>>> e54cc04c739b2ff70f9267b4299e64ec8dd0e652
 
     @payload_1 = 'payload={"url":"http://turing.io/team","requestedAt":"2013-02-13 21:38:28 -0700","respondedIn":37,"referredBy":"http://turing.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"1200","resolutionHeight":"800","ip":"63.29.38.214"}'
     @payload_2 = 'payload={"url":"http://turing.io/team","requestedAt":"2013-02-14 21:38:28 -0700","respondedIn":88,"referredBy":"http://turing.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"1200","resolutionHeight":"800","ip":"100.100.38.214"}'
@@ -34,11 +30,7 @@ class ApplicationDetailsTest < Minitest::Test
   end
 
   def test_it_displays_most_to_least_hits
-<<<<<<< HEAD
     assert page.has_content?("http://turing.io/team")
-=======
-    # assert page.has_content?("http://turing.io/team")
->>>>>>> e54cc04c739b2ff70f9267b4299e64ec8dd0e652
   end
 
   # def test_it_displays_browsers
