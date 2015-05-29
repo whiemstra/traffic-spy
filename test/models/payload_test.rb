@@ -18,7 +18,7 @@ class PayloadTest < Minitest::Test
     }')
   end
 
-  def test_incoming_payload_attributes_get_assigned_to_
+  def test_incoming_payload_attributes_get_temp_assigned
     payload_hash = self.parsed_payload
 
     obj = Payload.new
