@@ -27,7 +27,7 @@ module TrafficSpy
 
     get '/sources/:identifier' do |identifier|
       source = Source.find_by_identifier(identifier)
-
+      erb :appdetails
     end
 
     # get '/sources/:identifier/url/(:relative_path)' do |identifier, relative_path|   #dynamic route segments (article/1)
