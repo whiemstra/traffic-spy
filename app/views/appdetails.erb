@@ -1,10 +1,13 @@
-<h1>Data Page</h1>
+<h1>App Details Page</h1>
+
 <!-- Source overall statistics !-->
 <div id="statistics">
-	<ul>
-		<li>URLs from most to least requested</li>
-		<ol>
-
-		</ol>
-	</ul>
+  <ul>
+    <li>URLs from most to least requested</li>
+    <ol>
+        <% @sorted_urls.each do |url| %>
+          <li><%= "#{url[0]}: #{url[1]}" %></li>
+        <% end %>
+    </ol>
+  </ul>
 </div>

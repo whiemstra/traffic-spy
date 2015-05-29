@@ -1,5 +1,6 @@
 require  'digest/sha1'
 require 'pry'
+require_relative '../models/url'
 
 module TrafficSpy
   class Server < Sinatra::Base
@@ -29,7 +30,9 @@ module TrafficSpy
 
     get '/sources/:identifier' do |identifier|
       source = Source.find_by_identifier(identifier)
-
+      url = ApplicationDetails.new(identifier)
+      @sorted_urls = url.requested_urls
+      erb :appdetails
     end
 
     # get '/sources/:identifier/url/(:relative_path)' do |identifier, relative_path|   #dynamic route segments (article/1)

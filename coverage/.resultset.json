@@ -32,6 +32,7 @@
       "/Users/erikwithak/traffic-spy/app/controllers/server.rb": [
         1,
         1,
+        1,
         null,
         1,
         1,
@@ -61,7 +62,9 @@
         null,
         1,
         2,
-        null,
+        2,
+        2,
+        2,
         null,
         null,
         null,
@@ -83,6 +86,28 @@
         0,
         null,
         null,
+        null,
+        null,
+        null
+      ],
+      "/Users/erikwithak/traffic-spy/app/models/url.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        14,
+        8,
+        8,
+        null,
+        0,
         null,
         null,
         null
@@ -184,23 +209,6 @@
         null,
         10,
         null,
-        null,
-        null,
-        null
-      ],
-      "/Users/erikwithak/traffic-spy/app/models/url.rb": [
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
         null,
         null,
         null
@@ -444,6 +452,6 @@
         null
       ]
     },
-    "timestamp": 1432939296
+    "timestamp": 1432942746
   }
 }
