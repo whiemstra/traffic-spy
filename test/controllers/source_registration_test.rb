@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 require 'pry'
 
-class SourceRegistrationTest < ControllerTest
+class SourceRegistrationTest < Minitest::Test
 
   def test_valid_registration_with_identifier_and_rooturl
     init_count = SourceValidator.count
