@@ -26,7 +26,8 @@ module TrafficSpy
 
     get '/sources/:identifier' do |identifier|
       source = Source.find_by_identifier(identifier)
-      url = Url.new
+
+      url = ApplicationDetails.new(identifier)
       @sorted_urls = url.requested_urls
       erb :appdetails
     end
