@@ -1,6 +1,6 @@
 require 'pry'
 
-class ApplicationDetails < ActiveRecord::Base
+class Url < ActiveRecord::Base
   has_many :payloads
 
   def requested_urls

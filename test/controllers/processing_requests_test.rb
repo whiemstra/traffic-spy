@@ -38,13 +38,6 @@ class ProcessingRequestsTests < Minitest::Test
   def test_already_received_payload
     Source.create!(identifier: 'jumpstartlab', rooturl: 'http://jumpstartlab.com')
 
-<<<<<<< HEAD
-    post('/sources/jumpstartlab/data', { payload: valid_source.to_json } )
-    assert_equal 200, last_response.status
-    # binding.pry
-
-    post('/sources/jumpstartlab/data', { payload: valid_source.to_json })
-=======
     # Send it once, it should work
     post('/sources/jumpstartlab/data', { payload: valid_source } )
     assert_equal 200, last_response.status
@@ -52,7 +45,6 @@ class ProcessingRequestsTests < Minitest::Test
 
     # Send it again, it should error
     post('/sources/jumpstartlab/data', { payload: valid_source })
->>>>>>> e54cc04c739b2ff70f9267b4299e64ec8dd0e652
 
     assert_equal 403, last_response.status
     assert_equal 'Already Received Request', last_response.body
