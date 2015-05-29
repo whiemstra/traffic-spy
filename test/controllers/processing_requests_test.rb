@@ -15,7 +15,8 @@ class ProcessingRequestsTests < ControllerTest
       "userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17",
       "resolutionWidth":"1920",
       "resolutionHeight":"1280",
-      "ip":"63.29.38.211"
+      "ip":"63.29.38.211",
+      "payhash":"028e1foueqbivodph"
 }')
   end
 
@@ -37,12 +38,10 @@ class ProcessingRequestsTests < ControllerTest
   def test_already_received_payload
     Source.create!(identifier: 'jumpstartlab', rooturl: 'http://jumpstartlab.com')
 
-    # Send it once, it should work
     post('/sources/jumpstartlab/data', { payload: valid_source.to_json } )
-
     assert_equal 200, last_response.status
+    # binding.pry
 
-    # Send it again, it should error
     post('/sources/jumpstartlab/data', { payload: valid_source.to_json })
 
     assert_equal 403, last_response.status

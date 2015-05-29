@@ -6,7 +6,7 @@ class SourceRegistrationTest < ControllerTest
   def test_valid_registration_with_identifier_and_rooturl
     init_count = SourceValidator.count
 
-    post'/sources', { identifier: "anIdentifier", rootUrl: "some/root/url" }
+    post('/sources', { identifier: "anIdentifier", rootUrl: "some/root/url" })
 
     ende_count = SourceValidator.count
 
