@@ -4,7 +4,7 @@ require 'pry'
 class ApplicationDetailsTest < Minitest::Test
 
   def setup
-    Source.create!(identifier: 'turing', rooturl: 'http://turing.io')
+    x = Source.create!(identifier: 'turing', rooturl: 'http://turing.io')
 
     @payload_1 = 'payload={"url":"http://turing.io/team","requestedAt":"2013-02-13 21:38:28 -0700","respondedIn":37,"referredBy":"http://turing.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"1200","resolutionHeight":"800","ip":"63.29.38.214"}'
     @payload_2 = 'payload={"url":"http://turing.io/team","requestedAt":"2013-02-14 21:38:28 -0700","respondedIn":88,"referredBy":"http://turing.com","requestType":"GET","parameters":[],"eventName": "socialLogin","userAgent":"Mozilla/5.0 (Macintosh%3B Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17","resolutionWidth":"1200","resolutionHeight":"800","ip":"100.100.38.214"}'
@@ -20,6 +20,7 @@ class ApplicationDetailsTest < Minitest::Test
     post('/sources/turing/data', @payload_5)
     post('/sources/turing/data', @payload_6)
 
+    # binding.pry
     visit '/sources/turing'
   end
 
@@ -27,8 +28,21 @@ class ApplicationDetailsTest < Minitest::Test
     assert_equal '/sources/turing', current_path
   end
 
+  def test_displays_error_message_if_identifier_unknown
+    visit '/sources/gschool'
+
+    assert page.has_content?("Application Not Registered")
+
+  end
+
   def test_it_displays_most_to_least_hits
     assert page.has_content?("http://turing.io/team")
+  end
+
+  def test_it_displays_the_screen_res
+    assert page.has_content?("1200 x 800 : 2")
+    assert page.has_content?("120 x 160 : 1")
+    # assert page.has_content?("#{1200} x #{800}")
   end
 
   # def test_it_displays_browsers
@@ -38,19 +52,20 @@ class ApplicationDetailsTest < Minitest::Test
   # def test_it_displays_the_OS
   #
   # end
-  #
-  # def test_it_displays_the_screen_rez
-  #
-  # end
+
   #
   # def test_it_displays_least_to_most_response_time
   #
   # end
   #
   # def test_it_displays_events_link
+  #   assert page.find_link("Events")
   #
+  #   click_on 'event'
+  #
+  #   assert_equal '/sources/turing/events', current_path
   # end
-  #
+
 end
 
 

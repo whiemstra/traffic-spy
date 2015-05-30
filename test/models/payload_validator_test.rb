@@ -21,8 +21,7 @@ class PayloadValidatorTest < Minitest::Test
   def test_incoming_payload_attributes_get_saved_to_payloads_table
     source = Source.create!(identifier: 'foo', rooturl: 'http://foo/bar')
 
-    assert_equal 0, Payload.count # SELECT COUNT(*) FROM payloads;
-    # assert_equal 0, source.payloads.count
+    assert_equal 0, Payload.count
 
     obj = PayloadValidator.new(string_payload, source.identifier)
     obj.validate

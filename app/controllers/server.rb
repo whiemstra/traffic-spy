@@ -25,12 +25,14 @@ module TrafficSpy
     end
 
     get '/sources/:identifier' do |identifier|
-      source = Source.find_by_identifier(identifier)
+      Source.find_by_identifier(identifier)
 
       url = ApplicationDetails.new(identifier)
-      @sorted_urls = url.requested_urls
-      erb :appdetails
+      @sorted_urls = url.most_to_least_requested_urls
 
+      @sorted_screen_res = url.screen_resolution
+
+      erb :appdetails
     end
 
     # get '/sources/:identifier/url/(:relative_path)' do |identifier, relative_path|   #dynamic route segments (article/1)

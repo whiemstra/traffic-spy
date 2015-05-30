@@ -1,14 +1,24 @@
 <h1>App Details Page</h1>
 
+<a href="/sources/<%= @identifier %>/events" value="event">Events</a>
+
+
 <!-- Source overall statistics !-->
 <div id="statistics">
   <ul>
     <li>URLs from most to least requested</li>
     <ol>
         <% @sorted_urls.each do |url| %>
-          <li><%= "#{url[0]}: #{url[1]}" %></li>
+        <li><%= "#{url[0]}: #{url[1]}" %></li>
         <% end %>
-
+    </ol>
+    <br>
+    <br>
+    <li>Screen Resolutions</li>
+    <ol>
+      <% @sorted_screen_res.each do |resolution| %>
+        <li><%= "#{resolution[0][0]} x #{resolution[0][1]} : #{resolution[1] }" %></li>
+      <% end %>
     </ol>
   </ul>
 </div>

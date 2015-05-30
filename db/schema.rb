@@ -11,10 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529202114) do
+ActiveRecord::Schema.define(version: 20150530010001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "application_details", force: :cascade do |t|
+    t.text "text"
+  end
 
   create_table "payloads", force: :cascade do |t|
     t.text     "payhash"
@@ -34,10 +38,6 @@ ActiveRecord::Schema.define(version: 20150529202114) do
   create_table "sources", force: :cascade do |t|
     t.text "identifier"
     t.text "rooturl"
-  end
-
-  create_table "urls", force: :cascade do |t|
-    t.text "address"
   end
 
 end

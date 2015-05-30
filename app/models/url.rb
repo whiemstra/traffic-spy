@@ -8,11 +8,21 @@ class ApplicationDetails < ActiveRecord::Base
     @identifier = identifier
   end
 
-  def requested_urls
+  def most_to_least_requested_urls
     if identified_source = Source.find_by_identifier(identifier)
       grouped_urls = identified_source.payloads.group_by { |payload| payload[:url] }
       sorted_urls = grouped_urls.map { |url, payloads| [url, payloads.length] }
-      descending_urls = sorted_urls.sort_by { |pair| pair[1] }
+      sorted_urls.sort_by { |pair| pair[1] }.reverse
+    else
+      { status: 403, body: "Application Not Registered"}
+    end
+  end
+
+  def screen_resolution
+    if identified_source = Source.find_by_identifier(identifier)
+      grouped_screen_res = identified_source.payloads.group_by { |payload| [payload[:resolution_width], payload[:resolution_height]] }
+      sorted_urls = grouped_screen_res.map { |resolution, payloads| [resolution, payloads.length] }
+      sorted_urls.sort_by { |pair| [pair[1], pair[0]] }
     else
       { status: 403, body: "Application Not Registered"}
     end
