@@ -42,7 +42,6 @@ class ApplicationDetailsTest < Minitest::Test
   def test_it_displays_the_screen_res
     assert page.has_content?("1200 x 800 : 2")
     assert page.has_content?("120 x 160 : 1")
-    # assert page.has_content?("#{1200} x #{800}")
   end
 
   # def test_it_displays_browsers
@@ -58,13 +57,13 @@ class ApplicationDetailsTest < Minitest::Test
   #
   # end
   #
-  # def test_it_displays_events_link
-  #   assert page.find_link("Events")
-  #
-  #   click_on 'event'
-  #
-  #   assert_equal '/sources/turing/events', current_path
-  # end
+  def test_it_displays_events_link
+    assert page.find_link("Events")
+
+    click_link 'Events'
+
+    assert_equal '/sources/turing/events', current_path
+  end
 
 end
 

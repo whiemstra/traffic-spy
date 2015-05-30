@@ -35,6 +35,18 @@ module TrafficSpy
       erb :appdetails
     end
 
+    get '/sources/:identifier/events' do |identifier|
+      Source.find_by_identifier(identifier)
+      events = Event.new(identifier)
+
+      events.validate
+
+      status events.result[:status]
+      body events.result[:body]
+    end
+
+
+
     # get '/sources/:identifier/url/(:relative_path)' do |identifier, relative_path|   #dynamic route segments (article/1)
     #   source = Source.find_by_identifier(identifier)
     #   full_url = "#{source.rooturl}/#{relative_path}"

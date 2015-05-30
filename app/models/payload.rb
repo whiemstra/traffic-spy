@@ -1,5 +1,7 @@
 class Payload < ActiveRecord::Base
   belongs_to :source
+  belongs_to :event
+
   validates :payhash, presence: true, uniqueness: true
 
   def parse_payload!(payload_hash)
