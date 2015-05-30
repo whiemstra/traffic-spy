@@ -16,6 +16,10 @@ ActiveRecord::Schema.define(version: 20150529202114) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "application_details", force: :cascade do |t|
+    t.text "text"
+  end
+
   create_table "payloads", force: :cascade do |t|
     t.text     "payhash"
     t.integer  "source_id"
