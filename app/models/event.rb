@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   has_many :payloads
   attr_reader :identifier,
               :result
-  
+
   def initialize(identifier)
     @identifier = identifier
   end

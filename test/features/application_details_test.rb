@@ -32,7 +32,6 @@ class ApplicationDetailsTest < Minitest::Test
     visit '/sources/gschool'
 
     assert page.has_content?("Application Not Registered")
-
   end
 
   def test_it_displays_most_to_least_hits
@@ -44,19 +43,14 @@ class ApplicationDetailsTest < Minitest::Test
     assert page.has_content?("120 x 160 : 1")
   end
 
-  # def test_it_displays_browsers
-  #
-  # end
-
-  # def test_it_displays_the_OS
-  #
-  # end
-
-  #
   # def test_it_displays_least_to_most_response_time
   #
   # end
-  #
+
+  def test_find_full_url
+
+  end
+
   def test_it_displays_events_link
     assert page.find_link("Events")
 
@@ -66,11 +60,3 @@ class ApplicationDetailsTest < Minitest::Test
   end
 
 end
-
-
-# visit '/tasks/new'
-# fill_in('task[title]', with: "Groceries")
-# fill_in('task[description]', with: "Milk, Eggs, Bread")
-# click_link_or_button 'submit'
-#
-# assert page.has_content?("Groceries")

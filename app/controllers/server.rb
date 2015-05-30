@@ -46,15 +46,22 @@ module TrafficSpy
     end
 
 
+    get '/sources/:identifier/urls/:relative_path' do |identifier, relative_path|   #dynamic route segments (article/1)
+      source = Source.find_by_identifier(identifier)
+      x = UrlStat.new(source, relative_path)
 
-    # get '/sources/:identifier/url/(:relative_path)' do |identifier, relative_path|   #dynamic route segments (article/1)
-    #   source = Source.find_by_identifier(identifier)
-    #   full_url = "#{source.rooturl}/#{relative_path}"
-    #   payloads_for_url = source.payloads.where(url: full_url).all
-    #
-    #   # payloads_for_url are all the payloads matching the URL.
-    # end
-    #
+
+      x.longest_response_time
+
+      erb :relative_url_path
+      # payloads_for_url.shortest_response_time
+      # payloads_for_url.average_response_time
+
+
+      #payloads_for_url are all the payloads matching the URL.
+    end
+
+
     # get '/sources/:identifier/events/:eventname' do |identifier, eventname|
     #   source = Source.find_by_identifier(identifier)
     #   payloads_for_event = source.payloads.where(event_name: eventname).all
