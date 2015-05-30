@@ -1,0 +1,14 @@
+<h1>App Details Page</h1>
+
+<!-- Source overall statistics !-->
+<div id="event-statistics">
+  <ul>
+    <li>Event hits by hour</li>
+    <ul>
+      <% @reception_times.keys.each do |hour| %>
+        <li><%= "#{hour}: #{@reception_times[hour].length}" %></li>
+      <% end %>
+    </ul>
+    <li>Total hits: <%= @reception_total %></li>
+  </ul>
+</div>
