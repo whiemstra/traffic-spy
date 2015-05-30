@@ -1,0 +1,25 @@
+<h1>URL Details Page</h1>
+
+<!-- Specific URL statistics !-->
+<div id="sub-statistics">
+  <ul>
+      <li>
+        <% @longest_resp_time.each do |verb| %>
+        <li><%= verb %></li>
+      <% end %>
+      </li>
+      <br>
+      <br>
+      <li>
+        <% @shortest_resp_time.each do |verb| %>
+        <li><%= verb %></li>
+      <% end %>
+      </li>
+      <br>
+      <br><li>
+      <% @average_resp_time.each do |verb| %>
+        <li><%= verb %></li>
+      <% end %>
+      </li>
+  </ul>
+</div>

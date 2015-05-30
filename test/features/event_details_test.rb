@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 require 'pry'
 
-class ApplicationDetailsTest < Minitest::Test
+class EventDetailsTest < Minitest::Test
 
   def setup
     x = Source.create!(identifier: 'turing', rooturl: 'http://turing.io')
@@ -22,24 +22,16 @@ class ApplicationDetailsTest < Minitest::Test
 
     # binding.pry
 
-    visit '/sources/turing'
+    visit '/sources/turing/events/socialLogin'
   end
 
   def test_path_exists
-    assert_equal '/sources/turing', current_path
+    assert_equal '/sources/turing/events/socialLogin', current_path
   end
 
   # def test_it_displays_most_to_least_hits
-    # assert page.has_content?("http://turing.io/team")
+  #   assert page.has_content?("http://turing.io/team")
   # end
-
-  def test_it_displays_browsers
-    assert page.has_content?("Chrome") || page.has_content?("Firefox") || page.has_content?("Safari")
-  end
-
-  def test_it_displays_the_OS
-    assert page.has_content?("Macintosh") || page.has_content?("Windows")
-  end
   
   # def test_it_displays_the_screen_rez
   #

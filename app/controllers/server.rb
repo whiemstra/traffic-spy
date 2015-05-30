@@ -2,6 +2,7 @@ require  'digest/sha1'
 require 'pry'
 require_relative '../models/url'
 require_relative '../models/user_agent'
+require_relative '../models/event_details'
 
 module TrafficSpy
   class Server < Sinatra::Base
@@ -54,6 +55,14 @@ module TrafficSpy
     #
     #   # payloads_for_event are all the payloads matching the event name.
     # end
+
+    get '/sources/:identifier/events/:eventname' do |identifier, eventname|
+      source = Source.find_by_identifier(identifier)
+      event = EventDetails.new(identifier, eventname)
+      @reception_times = event.hours
+      @reception_total = event.receptions
+      erb :eventdetails
+    end
 
     not_found do
       erb :error
