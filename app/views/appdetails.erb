@@ -8,6 +8,10 @@
         <% @sorted_urls.each do |url| %>
           <li><%= "#{url[0]}: #{url[1]}" %></li>
         <% end %>
+
+        <% @sorted_responses.each do |response| %>
+        <li><%= "#{response[0]}: #{response[1]}" %></li>
+        <% end %>
     </ol>
   </ul>
 </div>

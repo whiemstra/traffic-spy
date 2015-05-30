@@ -1,6 +1,6 @@
 require 'pry'
 
-class Url < ActiveRecord::Base
+class ApplicationDetails < ActiveRecord::Base
   has_many :payloads
   attr_reader :identifier
 
