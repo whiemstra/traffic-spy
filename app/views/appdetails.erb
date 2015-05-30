@@ -1,33 +1,45 @@
+
 <h1>App Details Page</h1>
 
 <a href="/sources/<%= params[:identifier] %>/events" value='events'>Events</a>
-
 
 <!-- Source overall statistics !-->
 <div id="statistics">
   <ul>
     <li>URLs from most to least requested</li>
     <ol>
-        <% @sorted_urls.each do |url| %>
-        <li><%= "#{url[0]}: #{url[1]}" %></li>
-        <% end %>
-    </ol>
-    <br>
-    <br>
-    <li>Screen Resolutions</li>
-    <ol>
-      <% @sorted_screen_res.each do |resolution| %>
-        <li><%= "#{resolution[0][0]} x #{resolution[0][1]} : #{resolution[1] }" %></li>
+      <% @sorted_urls.each do |url| %>
+        <li><a href=<%="#{url[0]}"%>><%= "#{url[0]}"%></a>: <%="#{url[1]}"%></li>
       <% end %>
     </ol>
-  </ul>
-
-  <ul>
-    <li> URLs from longest to shortest response times<li>
+    <li> URLs from longest to shortest response times</li>
+    <ol>
+      <% @sorted_response_times.each do |response| %>
+        <li><%= "#{response[0]}: #{response[1]}" %></li>
+      <% end %>
+    </ol>
+    <li>User Agent breakdown</li>
+    <ul>
+      <li>Browsers</li>
       <ol>
-        <% @sorted_response_times.each do |response| %>
-        <li><%= "#{response[:url]}: #{response[:responded_in]}" %></li>
+        <% @sorted_browsers.each do |browser| %>
+          <li><%= "#{browser[0]}: #{browser[1]}" %></li>
         <% end %>
       </ol>
+      <li>Platforms</li>
+      <ol>
+        <% @sorted_platforms.each do |platform| %>
+          <li><%= "#{platform[0]}: #{platform[1]}" %></li>
+        <% end %>
+      </ol>
+    </ul>
+    <ul>
+      <li>Screen Resolutions</li>
+      <ol>
+        <% @sorted_screen_res.each do |resolution| %>
+          <li><%= "#{resolution[0][0]} x #{resolution[0][1]} : #{resolution[1] }" %></li>
+        <% end %>
+      </ol>
+    </ul>
   </ul>
 </div>

@@ -1,0 +1,20 @@
+<h1>URL Details Page</h1>
+
+<!-- Specific URL statistics !-->
+<div id="sub-statistics">
+  <ul>
+    <li>Longest response time: <%= @longest_resp_time %></li>
+    <li>Shortest response time: <%= @shortest_resp_time %></li>
+    <li>Average response time: <%= @average_resp_time %></li>
+    <li>HTTP verbs used:</li>
+    <ul>
+      <li>
+        <% @payload_request_types.each do |verb| %>
+          <li><%= verb %></li>
+        <% end %>
+      </li>
+      <br>
+      <br>
+    </ul>
+  </ul>
+</div>

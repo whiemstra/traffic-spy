@@ -8,7 +8,7 @@ class ApplicationDetails < ActiveRecord::Base
     @identifier = identifier
   end
 
-  def most_to_least_requested_urls
+  def requested_urls
     if identified_source = Source.find_by_identifier(identifier)
       grouped_urls = identified_source.payloads.group_by { |payload| payload[:url] }
       sorted_urls = grouped_urls.map { |url, payloads| [url, payloads.length] }
@@ -28,12 +28,21 @@ class ApplicationDetails < ActiveRecord::Base
     end
   end
 
-  def sorted_response_times
+  def sorted_response_times # this one does averages!
     if identified_source = Source.find_by_identifier(identifier)
-      urls = identified_source.payloads
-      sorted_urls = urls.sort_by {|url| url[:responded_in]}.reverse
+      payloads = identified_source.payloads.group(:url).average(:responded_in)
+      payloads.sort_by {|payload| payload[1] }.reverse
     else
       { status: 403, body: "Application Not Registered"}
     end
   end
+
+  # def old_sorted_response_times
+  #   if identified_source = Source.find_by_identifier(identifier)
+  #     urls = identified_source.payloads.select(:url, :responded_in).uniq(:url)
+  #     urls.sort_by {|url| url[:responded_in]}.reverse
+  #   else
+  #     { status: 403, body: "Application Not Registered"}
+  #   end
+  # end
 end
