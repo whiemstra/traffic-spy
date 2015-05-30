@@ -29,17 +29,17 @@ class ApplicationDetailsTest < Minitest::Test
     assert_equal '/sources/turing', current_path
   end
 
-  def test_it_displays_most_to_least_hits
+  # def test_it_displays_most_to_least_hits
     # assert page.has_content?("http://turing.io/team")
+  # end
+
+  def test_it_displays_browsers
+    assert page.has_content?("Chrome") || page.has_content?("Firefox") || page.has_content?("Safari")
   end
 
-  # def test_it_displays_browsers
-  #
-  # end
-
-  # def test_it_displays_the_OS
-  #
-  # end
+  def test_it_displays_the_OS
+    assert page.has_content?("Macintosh") || page.has_content?("Windows")
+  end
   #
   # def test_it_displays_the_screen_rez
   #

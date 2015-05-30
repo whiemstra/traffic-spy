@@ -34,6 +34,7 @@ module TrafficSpy
       url = ApplicationDetails.new(identifier)
       agent = Agent.new(identifier)
       @sorted_urls = url.requested_urls
+      @sorted_response_times = url.sorted_response_times
       @sorted_browsers = agent.incoming_browsers
       @sorted_platforms = agent.incoming_platforms
       erb :appdetails
