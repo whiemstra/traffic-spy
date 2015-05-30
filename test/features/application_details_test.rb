@@ -20,8 +20,6 @@ class ApplicationDetailsTest < Minitest::Test
     post('/sources/turing/data', @payload_5)
     post('/sources/turing/data', @payload_6)
 
-    # binding.pry
-
     visit '/sources/turing'
   end
 

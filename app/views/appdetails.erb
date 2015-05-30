@@ -5,6 +5,9 @@
   <ul>
     <li>URLs from most to least requested</li>
     <ol>
+        <% @sorted_urls.each do |url| %>
+          <li><%= "#{url[0]}: #{url[1]}" %></li>
+        <% end %>
 
     </ol>
   </ul>

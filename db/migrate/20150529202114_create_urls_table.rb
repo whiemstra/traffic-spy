@@ -1,7 +1,7 @@
 class CreateUrlsTable < ActiveRecord::Migration
   def change
-    create_table :urls do |t|
-      t.text       :address
+    create_table :application_details do |t|
+      t.text     :text
     end
   end
 end

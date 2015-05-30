@@ -2,6 +2,11 @@ require 'pry'
 
 class ApplicationDetails < ActiveRecord::Base
   has_many :payloads
+  attr_reader :identifier
+
+  def initialize(identifier)
+    @identifier = identifier
+  end
 
   def requested_urls
     if identified_source = Source.find_by_identifier(identifier)
