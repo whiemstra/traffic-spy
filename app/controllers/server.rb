@@ -46,14 +46,25 @@ module TrafficSpy
 
     end
 
+    # get '/sources/:identifier/events' do |identifier|
+    #   Source.find_by_identifier(identifier)
+    #   events = Event.new(identifier)
+    #
+    #   events.validate
+    #
+    #   status events.result[:status]
+    #   body events.result[:body]
+    # end
+
     get '/sources/:identifier/events' do |identifier|
-      Source.find_by_identifier(identifier)
-      events = Event.new(identifier)
-
-      events.validate
-
-      status events.result[:status]
-      body events.result[:body]
+      url = ApplicationDetails.new(identifier)
+      @event_count = url.count_events
+      if @event_count[0].nil?
+        @error_message = "Sorry, there are no events."
+        erb :error
+      else
+        erb :eventindex
+      end
     end
 
 
@@ -83,13 +94,17 @@ module TrafficSpy
 
     end
 
+    get '/sources/:identifier/events' do |identifier|
+      url = ApplicationDetails.new(identifier)
+      @event_count = url.count_events
+      if @event_count[0].nil?
+        @error_message = "Sorry, there are no events."
+        erb :error
+      else
+        erb :eventindex
+      end
+    end
 
-    # get '/sources/:identifier/events/:eventname' do |identifier, eventname|
-    #   source = Source.find_by_identifier(identifier)
-    #   payloads_for_event = source.payloads.where(event_name: eventname).all
-    #
-    #   # payloads_for_event are all the payloads matching the event name.
-    # end
 
     not_found do
       erb :error

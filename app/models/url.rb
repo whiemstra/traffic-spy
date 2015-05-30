@@ -45,4 +45,15 @@ class ApplicationDetails < ActiveRecord::Base
   #     { status: 403, body: "Application Not Registered"}
   #   end
   # end
+
+  def count_events
+    if identified_source = Source.find_by_identifier(identifier)
+      grouped_events = identified_source.payloads.group_by { |payload| payload[:event_name] }
+      sorted_events = grouped_events.map { |url, payloads| [url, payloads.length] }
+      descending_events = sorted_events.sort_by { |pair| pair[1] }
+    else
+      { status: 403, body: "Application Not Registered"}
+    end
+  end
+
 end

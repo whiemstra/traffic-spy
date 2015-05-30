@@ -63,7 +63,7 @@ class ApplicationDetailsTest < Minitest::Test
 
   def test_it_displays_correct_error_message_if_path_does_not_exist
     visit '/sources/turing/urls/contact'
-    assert page.has_content?('URL Not Requested')
+    assert page.has_content?('Relative URL Does Not Exist')
   end
 
   def test_it_displays_longest_average_response_time_per_url_among_all_urls
@@ -101,6 +101,14 @@ class ApplicationDetailsTest < Minitest::Test
     assert page.has_content?('POST')
   end
 
+  def test_it_counts_events
+    visit '/sources/turing/events'
+    assert page.has_content?(
+        "moneymoneymoney: 1
+        checking_it_out: 2
+        socialLogin: 3 ")
+  end
+
   # def test_most_popular_referrers
   #   visit '/sources/yahoo/urls/weather'
   #   assert page.has_content?('jumpstart')
@@ -116,13 +124,5 @@ class ApplicationDetailsTest < Minitest::Test
   #   visit '/sources/yahoo/urls/weather'
   #   assert page.has_content?('Windows')
   # end
-
-  def test_it_displays_events_link
-    assert page.find_link("Events")
-
-    click_link 'Events'
-
-    assert_equal '/sources/turing/events', current_path
-  end
 
 end
