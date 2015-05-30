@@ -37,7 +37,13 @@ module TrafficSpy
       @sorted_browsers = agent.incoming_browsers
       @sorted_platforms = agent.incoming_platforms
 
-      erb :appdetails
+      if Source.find_by_identifier(identifier)
+        erb :appdetails
+      else
+        @error_message = "Application Not Registered"
+        erb :error
+      end
+
     end
 
     get '/sources/:identifier/events' do |identifier|
@@ -51,9 +57,11 @@ module TrafficSpy
     end
 
 
-    get '/sources/:identifier/urls/:relative_path' do |identifier, relative_path|   #dynamic route segments (article/1)
+    get '/sources/:identifier/urls/*' do |identifier, splat|   #dynamic route segments (article/1)
       source = Source.find_by_identifier(identifier)
-      url = UrlStat.new(source, relative_path)
+      url = UrlStat.new(source, splat)
+      agent = Agent.new(identifier)
+
 
       if url.verify_path_exists?
         @longest_resp_time = url.longest_response_time
@@ -62,10 +70,15 @@ module TrafficSpy
 
         @payload_request_types = url.request_types
 
-        # binding.pry
+        @referrers = url.popular_referrers
+        @user_agent_browsers = agent.popular_user_agent_browsers
+        @user_agent_platforms = agent.popular_user_agent_platforms
+
         erb :relative_url_path
       else
         url.show_error
+        @error_message = "Relative URL Does Not Exist"
+        erb :error
       end
 
     end

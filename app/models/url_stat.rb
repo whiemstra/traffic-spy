@@ -56,40 +56,18 @@ class UrlStat < ActiveRecord::Base
       sorted_urls = grouped_request_types.map { |request_type, payloads| [request_type, payloads.length] }
       sorted_urls.sort_by { |pair| pair[1] }.reverse
     else
-      { status: 403, body: "Application Not Registered"}
+      { status: 403, body: "URL Not Found"}
     end
-
-    # all_payloads = Url.find_by(address: webpage).payloads
-    #
-    # requests = all_payloads.map do |payload|
-    #   Request.find(payload.request_id).request_type
-    # end
-    #
-    # make_lines_readable(requests)
   end
 
-  # def self.popular_referrers(webpage)
-  #   referrals = Url.find_by(address: webpage).payloads.map do |payload|
-  #     Referral.find(payload.referral_id).url
-  #   end
-  #
-  #   most_popular = (referrals.group_by {|i| i}).sort.reverse.flatten.uniq.first
-  # end
-  #
-  # def self.popular_user_agent_browser(webpage)
-  #   user_agents = Url.find_by(address: webpage).payloads.map do |payload|
-  #     Agent.find(payload.agent_id).browser
-  #   end
-  #
-  #   most_popular = (user_agents.group_by {|i| i}).sort.reverse.flatten.uniq.first
-  # end
-  #
-  # def self.popular_user_agent_platform(webpage)
-  #   user_agents = Url.find_by(address: webpage).payloads.map do |payload|
-  #     Agent.find(payload.agent_id).platform
-  #   end
-  #
-  #   most_popular = (user_agents.group_by {|i| i}).sort.reverse.flatten.uniq.first
-  # end
+  def popular_referrers
+    if @source.payloads.find_by_url(full_url)
+      grouped_referrers = @source.payloads.group_by { |payload| payload[:referred_by] }
+      sorted_urls = grouped_referrers.map { |referrer, payloads| [referrer, payloads.length] }
+      sorted_urls.sort_by { |pair| pair[1] }.reverse
+    else
+      { status: 403, body: "URL Not Found"}
+    end
+  end
 
 end

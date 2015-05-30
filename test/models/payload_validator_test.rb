@@ -41,9 +41,6 @@ class PayloadValidatorTest < Minitest::Test
     assert_equal 1920, payload_obj.resolution_width
     assert_equal 1280, payload_obj.resolution_height
     assert_equal "63.29.38.211", payload_obj.ip
-
-
   end
-
 
 end
