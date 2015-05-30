@@ -29,22 +29,13 @@ class EventDetailsTest < Minitest::Test
     assert_equal '/sources/turing/events/socialLogin', current_path
   end
 
-  # def test_it_displays_most_to_least_hits
-  #   assert page.has_content?("http://turing.io/team")
-  # end
-  
-  # def test_it_displays_the_screen_rez
-  #
-  # end
-  #
-  # def test_it_displays_least_to_most_response_time
-  #
-  # end
-  #
-  # def test_it_displays_events_link
-  #
-  # end
-  #
+  def test_total_hits_are_displayed
+    assert page.has_content? "Total hits:"
+  end
+
+  def test_breakdown_by_hour_is_displayed
+    assert page.has_content? "Event hits by hour"
+  end
 end
 
 
