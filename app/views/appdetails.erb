@@ -21,4 +21,13 @@
       <% end %>
     </ol>
   </ul>
+
+  <ul>
+    <li> URLs from longest to shortest response times<li>
+      <ol>
+        <% @sorted_response_times.each do |response| %>
+        <li><%= "#{response[:url]}: #{response[:responded_in]}" %></li>
+        <% end %>
+      </ol>
+  </ul>
 </div>

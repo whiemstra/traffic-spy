@@ -53,5 +53,4 @@ class SourceRegistrationTest < Minitest::Test
     assert_equal "Identifier has already been taken", last_response.body
     assert_equal init_count, ende_count
   end
-
 end

@@ -28,9 +28,12 @@ module TrafficSpy
       Source.find_by_identifier(identifier)
 
       url = ApplicationDetails.new(identifier)
-      @sorted_urls = url.most_to_least_requested_urls
+      agent = Agent.new(identifier)
 
-      @sorted_screen_res = url.screen_resolution
+      @sorted_urls = url.requested_urls
+      @sorted_response_times = url.sorted_response_times
+      @sorted_browsers = agent.incoming_browsers
+      @sorted_platforms = agent.incoming_platforms
 
       erb :appdetails
     end
@@ -48,10 +51,10 @@ module TrafficSpy
 
     get '/sources/:identifier/urls/:relative_path' do |identifier, relative_path|   #dynamic route segments (article/1)
       source = Source.find_by_identifier(identifier)
-      x = UrlStat.new(source, relative_path)
+      url = UrlStat.new(source, relative_path)
 
 
-      x.longest_response_time
+      @url_stat = url.longest_response_time
 
       erb :relative_url_path
       # payloads_for_url.shortest_response_time
@@ -75,4 +78,3 @@ module TrafficSpy
 
   end
 end
-

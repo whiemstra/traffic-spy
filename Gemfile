@@ -6,7 +6,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'useragent'
 gem 'pry'
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov'
 gem 'tilt'
 require 'tilt/erb'
 

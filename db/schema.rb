@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20150530150014) do
   create_table "payloads", force: :cascade do |t|
     t.text     "payhash"
     t.integer  "source_id"
-    t.text     "url"
     t.string   "ip"
+    t.text     "url"
     t.datetime "requested_at"
     t.integer  "responded_in"
     t.text     "referred_by"
