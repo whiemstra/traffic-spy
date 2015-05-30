@@ -6,7 +6,7 @@
     <li>URLs from most to least requested</li>
     <ol>
         <% @sorted_urls.each do |url| %>
-         	<li><a href=<%="#{url[0]}"%>><%= "#{url[0]}"%></a>: <%="#{url[1]}"%></li>
+         	<li><a href=<%="/sources/#{params[:identifier]}/urls#{url[2]}"%>><%= "#{url[0]}"%></a>: <%="#{url[1]}"%></li>
         <% end %>
     </ol>
     <li> URLs from longest to shortest response times</li>
