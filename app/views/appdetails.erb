@@ -6,8 +6,23 @@
     <li>URLs from most to least requested</li>
     <ol>
         <% @sorted_urls.each do |url| %>
-          <li><%= "#{url[0]}: #{url[1]}" %></li>
+         	<li><%= "#{url[0]}: #{url[1]}" %></li>
         <% end %>
     </ol>
+    <li>User Agent breakdown</li>
+    <ul>
+    	<li>Browsers</li>
+    	<ol>
+    		<% @sorted_browsers.each do |browser| %>
+    			<li><%= "#{browser[0]}: #{browser[1]}" %></li>
+    		<% end %>
+    	</ol>
+    	<li>Platforms</li>
+    	<ol>
+    		<% @sorted_platforms.each do |platform| %>
+    			<li><%= "#{platform[0]}: #{platform[1]}" %></li>
+    		<% end %>
+    	</ol>
+    </ul>
   </ul>
 </div>

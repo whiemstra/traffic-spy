@@ -1,6 +1,7 @@
 require  'digest/sha1'
 require 'pry'
 require_relative '../models/url'
+require_relative '../models/user_agent'
 
 module TrafficSpy
   class Server < Sinatra::Base
@@ -31,7 +32,10 @@ module TrafficSpy
     get '/sources/:identifier' do |identifier|
       source = Source.find_by_identifier(identifier)
       url = ApplicationDetails.new(identifier)
+      agent = Agent.new(identifier)
       @sorted_urls = url.requested_urls
+      @sorted_browsers = agent.incoming_browsers
+      @sorted_platforms = agent.incoming_platforms
       erb :appdetails
     end
 
