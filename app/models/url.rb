@@ -17,4 +17,13 @@ class ApplicationDetails < ActiveRecord::Base
       { status: 403, body: "Application Not Registered"}
     end
   end
+
+  def sorted_response_times
+    if identified_source = Source.find_by_identifier(identifier)
+      urls = identified_source.payloads
+      sorted_urls = urls.sort_by {|url| url[:responded_in]}.reverse
+    else
+      { status: 403, body: "Application Not Registered"}
+    end
+  end
 end

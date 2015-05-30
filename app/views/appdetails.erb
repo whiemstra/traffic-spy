@@ -8,10 +8,15 @@
         <% @sorted_urls.each do |url| %>
           <li><%= "#{url[0]}: #{url[1]}" %></li>
         <% end %>
-
-        <% @sorted_responses.each do |response| %>
-        <li><%= "#{response[0]}: #{response[1]}" %></li>
-        <% end %>
     </ol>
+  </ul>
+
+  <ul>
+    <li> URLs from longest to shortest response times<li>
+      <ol>
+        <% @sorted_response_times.each do |response| %>
+        <li><%= "#{response[:url]}: #{response[:responded_in]}" %></li>
+        <% end %>
+      <ol>
   </ul>
 </div>

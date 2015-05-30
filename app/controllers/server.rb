@@ -29,6 +29,7 @@ module TrafficSpy
 
       url = ApplicationDetails.new(identifier)
       @sorted_urls = url.requested_urls
+      @sorted_response_times = url.sorted_response_times
       erb :appdetails
     end
 

@@ -33,6 +33,10 @@ class ApplicationDetailsTest < Minitest::Test
     # assert page.has_content?("http://turing.io/team")
   end
 
+  def test_it_displays_most_to_least_response_times
+    
+  end
+
   # def test_it_displays_browsers
   #
   # end
