@@ -1,7 +1,7 @@
 require 'json'
 require 'pry'
 
-class PayloadValidator #< Payload
+class PayloadValidator
   attr_reader :identifier,
               :result
 

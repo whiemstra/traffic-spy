@@ -1,6 +1,6 @@
 require 'pry'
 
-class UrlStat
+class UrlStats
   attr_reader :source,
               :full_url,
               :result,
