@@ -12,49 +12,47 @@ class ApplicationDetails < ActiveRecord::Base
     if identified_source = Source.find_by_identifier(identifier)
       grouped_urls = identified_source.payloads.group_by { |payload| payload[:url] }
       sorted_urls = grouped_urls.map { |url, payloads| [url, payloads.length] }
-      descending_urls = sorted_urls.sort_by { |pair| pair[1] }
+      sorted_urls.sort_by { |pair| pair[1] }.reverse
     else
       { status: 403, body: "Application Not Registered"}
     end
   end
 
-  def sorted_response_times
+  def screen_resolution
     if identified_source = Source.find_by_identifier(identifier)
-      urls = identified_source.payloads
-      sorted_urls = urls.sort_by {|url| url[:responded_in]}.reverse
+      grouped_screen_res = identified_source.payloads.group_by { |payload| [payload[:resolution_width], payload[:resolution_height]] }
+      sorted_urls = grouped_screen_res.map { |resolution, payloads| [resolution, payloads.length] }
+      sorted_urls.sort_by { |pair| [pair[1], pair[0]] }
     else
       { status: 403, body: "Application Not Registered"}
     end
   end
+
+  def sorted_response_times # this one does averages!
+    if identified_source = Source.find_by_identifier(identifier)
+      payloads = identified_source.payloads.group(:url).average(:responded_in)
+      payloads.sort_by {|payload| payload[1] }.reverse
+    else
+      { status: 403, body: "Application Not Registered"}
+    end
+  end
+
+  # def old_sorted_response_times
+  #   if identified_source = Source.find_by_identifier(identifier)
+  #     urls = identified_source.payloads.select(:url, :responded_in).uniq(:url)
+  #     urls.sort_by {|url| url[:responded_in]}.reverse
+  #   else
+  #     { status: 403, body: "Application Not Registered"}
+  #   end
+  # end
 
   def count_events
     if identified_source = Source.find_by_identifier(identifier)
       grouped_events = identified_source.payloads.group_by { |payload| payload[:event_name] }
       sorted_events = grouped_events.map { |url, payloads| [url, payloads.length] }
-      descending_events = sorted_events.sort_by { |pair| pair[1] }
+      sorted_events.sort_by { |pair| pair[1] }.reverse
     else
       { status: 403, body: "Application Not Registered"}
     end
   end
-
-  # def ordered_most_to_least_events
-  #  payloads.order('event_id').map { |load| load.event.event_name }.uniq
-  # end
-  #
-  # def events_by_hour(event_id)
-  #  payloads.where(event_id: event_id).map do |load|
-  #    Time.parse(load.requested_at).strftime("%l %p")
-  #  end
-  # end
-  #
-  # def count_events_by_hour(event_id)
-  #  events = events_by_hour(event_id)
-  #  events.map do |hour|
-  #    {time: hour, count: events.count(hour)}
-  #  end.uniq
-  # end
-  #
-  # def count_events(event_id)
-  #  payloads.where(event_id: event_id).count
-  # end
 end

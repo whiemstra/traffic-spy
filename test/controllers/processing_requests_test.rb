@@ -2,7 +2,6 @@ require_relative '../test_helper'
 
 class ProcessingRequestsTests < Minitest::Test
 
-  # NOTE this may need some tweaks; it was not tested
   def valid_source
     '{
       "url":"http://jumpstartlab.com/blog",
@@ -17,7 +16,7 @@ class ProcessingRequestsTests < Minitest::Test
       "resolutionHeight":"1280",
       "ip":"63.29.38.211",
       "payhash":"028e1foueqbivodph"
-}'
+  }'
   end
 
   def test_invalid_identifier_errors
@@ -38,12 +37,9 @@ class ProcessingRequestsTests < Minitest::Test
   def test_already_received_payload
     Source.create!(identifier: 'jumpstartlab', rooturl: 'http://jumpstartlab.com')
 
-    # Send it once, it should work
     post('/sources/jumpstartlab/data', { payload: valid_source } )
     assert_equal 200, last_response.status
-    # binding.pry
 
-    # Send it again, it should error
     post('/sources/jumpstartlab/data', { payload: valid_source })
 
     assert_equal 403, last_response.status

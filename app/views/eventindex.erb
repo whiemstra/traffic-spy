@@ -1,7 +1,7 @@
-<li>Event breakdown</li>
+<h1>Event Breakdown</h1>
 <ul>
   <% @event_count.each do |event| %>
     <a href="/sources/<%=params[:identifier] %>/events/<%="#{event[0]}"%>">
       <%= "#{event[0]}"%></a>: <%="#{event[1]}"%> <br>
-    <% end %>
+  <% end %>
 </ul>

@@ -1,0 +1,43 @@
+<h1>URL Details Page</h1>
+
+<!-- Specific URL statistics !-->
+<div id="sub-statistics">
+  <ul>
+    <li>Longest response time: <%= @longest_resp_time %></li>
+    <li>Shortest response time: <%= @shortest_resp_time %></li>
+    <li>Average response time: <%= @average_resp_time %></li>
+    <br>
+    <br>
+    <li>HTTP verbs used:</li>
+    <ul>
+        <% @payload_request_types.each do |verb| %>
+          <li><%= "#{verb[0]}: #{verb[1]}" %></li>
+        <% end %>
+    </ul>
+    <br>
+    <br>
+    <li>Popular Referrers:</li>
+    <ul>
+        <% @referrers.each do |verb| %>
+        <li><%= "#{verb[0]}: #{verb[1]}" %></li>
+        <% end %>
+    </ul>
+    <br>
+    <br>
+    <li>Popular User Agents:</li>
+    <ul>
+      <h4>Browsers:</h4>
+        <% @user_agent_browsers.each do |verb| %>
+          <li><%= "#{verb[0]}: #{verb[1]}" %></li>
+        <% end %>
+      <br>
+      <br>
+      <h4>Platforms</h4>
+        <% @user_agent_platforms.each do |verb| %>
+          <li><%= "#{verb[0]}: #{verb[1]}" %></li>
+        <% end %>
+    </ul>
+    <br>
+    <br>
+  </ul>
+</div>

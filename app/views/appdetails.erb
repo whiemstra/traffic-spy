@@ -1,34 +1,53 @@
-<h1>App Details Page</h1>
+<h1 id="appdetailsheader" class="col-lg-12">App Details Page</h1>
 
 <!-- Source overall statistics !-->
 <div id="statistics">
-  <ul>
-    <li>URLs from most to least requested</li>
+  <h4>URL Breakdown</h4>
+
+    <h6>URLs from most to least requested</h6>
     <ol>
-        <% @sorted_urls.each do |url| %>
-         	<li><a href=<%="#{url[0]}"%>><%= "#{url[0]}"%></a>: <%="#{url[1]}"%></li>
-        <% end %>
+      <% @sorted_urls.each do |url| %>
+        <li>
+          <a href=<%="/sources/#{params[:identifier]}/urls#{url[2]}"%>>
+          <%= "#{url[0]}"%></a>: <%="#{url[1]}"%>
+        </li>
+      <% end %>
     </ol>
-    <li> URLs from longest to shortest response times</li>
+    <h6> URLs from longest to shortest response times</h6>
     <ol>
-        <% @sorted_response_times.each do |response| %>
-        <li><%= "#{response[:url]}: #{response[:responded_in]}" %></li>
-        <% end %>
+      <% @sorted_response_times.each do |response| %>
+        <li><%= "#{response[0]}: #{response[1]}" %></li>
+      <% end %>
     </ol>
-    <li>User Agent breakdown</li>
-    <ul>
-    	<li>Browsers</li>
-    	<ol>
-    		<% @sorted_browsers.each do |browser| %>
-    			<li><%= "#{browser[0]}: #{browser[1]}" %></li>
-    		<% end %>
-    	</ol>
-    	<li>Platforms</li>
-    	<ol>
-    		<% @sorted_platforms.each do |platform| %>
-    			<li><%= "#{platform[0]}: #{platform[1]}" %></li>
-    		<% end %>
-    	</ol>
-    </ul>
-  </ul>
+<br>
+<br>
+    <h4>User Agent Breakdown</h4>
+      <h6>Browsers</h6>
+      <ol>
+        <% @sorted_browsers.each do |browser| %>
+          <li><%= "#{browser[0]}: #{browser[1]}" %></li>
+        <% end %>
+      </ol>
+      <h6>Platforms</h6>
+      <ol>
+        <% @sorted_platforms.each do |platform| %>
+          <li><%= "#{platform[0]}: #{platform[1]}" %></li>
+        <% end %>
+      </ol>
+      <h6>Screen Resolutions</h6>
+      <ol>
+        <% @sorted_screen_res.each do |resolution| %>
+          <li><%= "#{resolution[0][0]} x #{resolution[0][1]} : #{resolution[1] }" %></li>
+        <% end %>
+      </ol>
 </div>
+<br>
+<br>
+<br>
+<br>
+
+<footer>
+    <h2 id="centeredfooter">
+      <a id="eventslink" href="/sources/<%= params[:identifier] %>/events" value='events'>Events</a>
+    </h2>
+</footer>
