@@ -13,7 +13,7 @@ class PayloadValidator #< Payload
 
   def validate
     if identified_source = Source.find_by_identifier(identifier)
-      if identified_source.payloads.find_by_payhash(@cataloged_payload)
+      if identified_source.payloads.find_by_fingerprint(@cataloged_payload)
         @result = { status: 403, body: "Already Received Request" }
       else
         identified_source.payloads.create(normalized_payload)
@@ -30,7 +30,7 @@ class PayloadValidator #< Payload
   def normalized_payload
     {
       :url => @data["url"],
-      :requested_at => DateTime.parse(@data["requestedAt"]).utc, # FYI - ActiveRecord all values in DB stored in UTC
+      :requested_at => DateTime.parse(@data["requestedAt"]).utc,
       :responded_in => @data["respondedIn"],
       :referred_by => @data["referredBy"],
       :request_type => @data["requestType"],
@@ -39,7 +39,7 @@ class PayloadValidator #< Payload
       :resolution_width => @data["resolutionWidth"],
       :resolution_height => @data["resolutionHeight"],
       :ip => @data["ip"],
-      :payhash => @cataloged_payload
+      :fingerprint => @cataloged_payload
     }
   end
 
