@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 require 'pry'
 
-class ApplicationDetailsTest < Minitest::Test
+class EventDetailsTest < Minitest::Test
 
   def setup
     x = Source.create!(identifier: 'turing', rooturl: 'http://turing.io')
@@ -20,55 +20,19 @@ class ApplicationDetailsTest < Minitest::Test
     post('/sources/turing/data', @payload_5)
     post('/sources/turing/data', @payload_6)
 
-    visit '/sources/turing'
+    # binding.pry
+
+    visit '/sources/turing/events/socialLogin'
   end
 
   def test_path_exists
-    assert_equal '/sources/turing', current_path
+    assert_equal '/sources/turing/events/socialLogin', current_path
   end
 
-  def test_it_displays_most_to_least_response_times
-    assert page.has_content?(
-    "URLs from longest to shortest response times
-    http://turing.io/admissions: 130
-    http://turing.io/team: 88
-    http://turing.io/admissions: 65
-    http://turing.io/admissions: 40
-    http://turing.io/tuition: 40
-    http://turing.io/team: 37")
-  end
-
-  def test_it_displays_most_to_least_requested
-    assert page.has_content?(
-    "URLs from most to least requested
-    http://turing.io/tuition: 1
-    http://turing.io/team: 2
-    http://turing.io/admissions: 3")
-  end
-
-  def test_it_displays_browsers
-    assert page.has_content?("Chrome") || page.has_content?("Firefox") || page.has_content?("Safari")
-  end
-
-  def test_it_displays_the_OS
-    assert page.has_content?("Macintosh") || page.has_content?("Windows")
-  end
-
-  def test_it_counts_events
-    visit '/sources/turing/events'
-    assert page.has_content?(
-    "moneymoneymoney: 1
-    checking_it_out: 2
-    socialLogin: 3 ")
-  end
-  # def test_it_displays_browsers
-  #
+  # def test_it_displays_most_to_least_hits
+  #   assert page.has_content?("http://turing.io/team")
   # end
 
-  # def test_it_displays_the_OS
-  #
-  # end
-  #
   # def test_it_displays_the_screen_rez
   #
   # end

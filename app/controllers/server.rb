@@ -1,6 +1,7 @@
 require  'digest/sha1'
 require 'pry'
 require_relative '../models/url'
+require_relative '../models/user_agent'
 
 module TrafficSpy
   class Server < Sinatra::Base
@@ -28,9 +29,24 @@ module TrafficSpy
       source = Source.find_by_identifier(identifier)
 
       url = ApplicationDetails.new(identifier)
+      agent = Agent.new(identifier)
+
       @sorted_urls = url.requested_urls
       @sorted_response_times = url.sorted_response_times
+      @sorted_browsers = agent.incoming_browsers
+      @sorted_platforms = agent.incoming_platforms
       erb :appdetails
+    end
+
+    get '/sources/:identifier/events' do |identifier|
+      url = ApplicationDetails.new(identifier)
+      @event_count = url.count_events
+      if @event_count[0].nil?
+        @error_message = "Sorry, there are no events."
+        erb :error
+      else
+        erb :eventindex
+      end
     end
 
     # get '/sources/:identifier/url/(:relative_path)' do |identifier, relative_path|   #dynamic route segments (article/1)
@@ -47,6 +63,13 @@ module TrafficSpy
     #
     #   # payloads_for_event are all the payloads matching the event name.
     # end
+    get '/sources/:identifier/events/:eventname' do |identifier, eventname|
+      source = Source.find_by_identifier(identifier)
+      event = EventDetails.new(identifier, eventname)
+      @reception_times = event.hours
+      @reception_total = event.receptions
+      erb :eventdetails
+    end
 
     not_found do
       erb :error

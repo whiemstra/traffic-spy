@@ -9,6 +9,6 @@ class AddPayloadInfoToPayloadsTable < ActiveRecord::Migration
     add_column :payloads, :resolutionwidth,  :integer
     add_column :payloads, :resolutionheight, :integer
     add_column :payloads, :ip,               :integer
-    add_column :payloads, :url,              :text`
+    add_column :payloads, :url,              :text
   end
 end
