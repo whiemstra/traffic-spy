@@ -1,7 +1,7 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/config/environment.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/config/environment.rb": [
         null,
         1,
         1,
@@ -29,7 +29,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/controllers/server.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/controllers/server.rb": [
         1,
         1,
         1,
@@ -134,7 +134,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/url.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/models/url.rb": [
         1,
         null,
         1,
@@ -194,7 +194,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/user_agent.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/models/user_agent.rb": [
         1,
         null,
         1,
@@ -251,7 +251,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/eventdetails.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/models/eventdetails.rb": [
         1,
         null,
         1,
@@ -295,7 +295,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/payload.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/models/payload.rb": [
         1,
         1,
         1,
@@ -318,7 +318,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/payload_validator.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/models/payload_validator.rb": [
         1,
         1,
         null,
@@ -367,7 +367,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/source.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/models/source.rb": [
         null,
         1,
         1,
@@ -378,7 +378,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/source_validator.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/models/source_validator.rb": [
         1,
         null,
         1,
@@ -399,7 +399,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/app/models/url_stat.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/app/models/url_stat.rb": [
         1,
         null,
         1,
@@ -460,7 +460,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/config/database.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/config/database.rb": [
         null,
         1,
         1,
@@ -476,7 +476,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/controllers/source_registration_test.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/test/controllers/source_registration_test.rb": [
         1,
         1,
         null,
@@ -534,7 +534,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/features/application_details_test.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/test/features/application_details_test.rb": [
         1,
         1,
         null,
@@ -614,7 +614,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/features/application_url_stats_test.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/test/features/application_url_stats_test.rb": [
         1,
         1,
         null,
@@ -692,7 +692,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/features/event_details_test.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/test/features/event_details_test.rb": [
         1,
         1,
         null,
@@ -754,7 +754,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/models/payload_test.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/test/models/payload_test.rb": [
         1,
         null,
         1,
@@ -796,7 +796,7 @@
         null,
         null
       ],
-      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy/test/models/payload_validator_test.rb": [
+      "/Users/levkravinsky/Desktop/Turing/Projects/traffic-spy-heroku/test/models/payload_validator_test.rb": [
         1,
         null,
         1,
@@ -845,6 +845,6 @@
         null
       ]
     },
-    "timestamp": 1433115348
+    "timestamp": 1433116272
   }
 }
