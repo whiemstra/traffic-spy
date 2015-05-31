@@ -6,14 +6,14 @@ class PayloadValidator #< Payload
               :result
 
   def initialize(data, identifier)
-    @hashed = Digest::SHA1.hexdigest(data)
+    @cataloged_payload = Digest::SHA1.hexdigest(data)
     @data = JSON.parse(data)
     @identifier = identifier
   end
 
   def validate
     if identified_source = Source.find_by_identifier(identifier)
-      if identified_source.payloads.find_by_payhash(@hashed)
+      if identified_source.payloads.find_by_payhash(@cataloged_payload)
         @result = { status: 403, body: "Already Received Request" }
       else
         identified_source.payloads.create(normalized_payload)
@@ -39,7 +39,7 @@ class PayloadValidator #< Payload
       :resolution_width => @data["resolutionWidth"],
       :resolution_height => @data["resolutionHeight"],
       :ip => @data["ip"],
-      :payhash => @hashed
+      :payhash => @cataloged_payload
     }
   end
 

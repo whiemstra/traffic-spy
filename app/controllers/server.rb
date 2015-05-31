@@ -81,16 +81,6 @@ module TrafficSpy
       end
     end
 
-    # OLD ONE
-    # get '/sources/:identifier/events/:eventname' do |identifier, eventname|
-    #   Source.find_by_identifier(identifier)
-    #   event = EventDetails.new(identifier, eventname)
-    #   @reception_times = event.hours
-    #   @reception_total = event.receptions
-    #   erb :eventdetails
-    # end
-
-
     get '/sources/:identifier/events/:eventname' do |identifier, eventname|
       Source.find_by_identifier(identifier)
       event = EventDetails.new(identifier, eventname)
