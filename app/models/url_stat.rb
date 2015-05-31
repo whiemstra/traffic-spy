@@ -23,20 +23,20 @@ class UrlStat < ActiveRecord::Base
   end
 
   def longest_response_time
-    if @source.payloads.find_by_url(full_url)
-      @source.payloads.maximum(:responded_in)
+    if verify_path_exists?
+      @source.payloads.where(url: full_url).maximum(:responded_in)
     end
   end
 
   def shortest_response_time
-    if @source.payloads.find_by_url(full_url)
-      @source.payloads.minimum(:responded_in)
+    if verify_path_exists?
+      @source.payloads.where(url: full_url).minimum(:responded_in)
     end
   end
 
   def average_response_time
-    if @source.payloads.find_by_url(full_url)
-      @source.payloads.average(:responded_in)
+    if verify_path_exists?
+      @source.payloads.where(url: full_url).average(:responded_in)
     end
   end
 

@@ -28,7 +28,7 @@ class ApplicationDetails < ActiveRecord::Base
     end
   end
 
-  def sorted_response_times # this one does averages!
+  def sorted_response_times
     if identified_source = Source.find_by_identifier(identifier)
       payloads = identified_source.payloads.group(:url).average(:responded_in)
       payloads.sort_by {|payload| payload[1] }.reverse
@@ -36,15 +36,6 @@ class ApplicationDetails < ActiveRecord::Base
       { status: 403, body: "Application Not Registered"}
     end
   end
-
-  # def old_sorted_response_times
-  #   if identified_source = Source.find_by_identifier(identifier)
-  #     urls = identified_source.payloads.select(:url, :responded_in).uniq(:url)
-  #     urls.sort_by {|url| url[:responded_in]}.reverse
-  #   else
-  #     { status: 403, body: "Application Not Registered"}
-  #   end
-  # end
 
   def count_events
     if identified_source = Source.find_by_identifier(identifier)
