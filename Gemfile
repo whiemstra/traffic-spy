@@ -8,7 +8,6 @@ gem 'useragent'
 gem 'pry'
 gem 'simplecov'
 gem 'tilt', '1.3.4'
-require 'tilt/erb'
 
 group :development, :test do
   gem 'shotgun'
