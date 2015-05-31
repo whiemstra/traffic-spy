@@ -9,6 +9,11 @@ class EventDetails < ActiveRecord::Base
     @eventname = eventname
   end
 
+  def event_exists?
+    source = Source.find_by_identifier(identifier)
+    source.payloads.find_by_event_name(eventname) ? true : false
+  end
+
   def hours
     if source = Source.find_by_identifier(identifier)
       if source.payloads.find_by_event_name(eventname)

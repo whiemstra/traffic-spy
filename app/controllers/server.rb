@@ -45,18 +45,6 @@ module TrafficSpy
 
     end
 
-    get '/sources/:identifier/events' do |identifier|
-      url = ApplicationDetails.new(identifier)
-      @event_count = url.count_events
-      if @event_count[0].nil?
-        @error_message = "Sorry, there are no events."
-        erb :error
-      else
-        erb :eventindex
-      end
-    end
-
-
     get '/sources/:identifier/urls/*' do |identifier, splat|   #dynamic route segments (article/1)
       source = Source.find_by_identifier(identifier)
 
@@ -80,7 +68,6 @@ module TrafficSpy
         @error_message = "Relative URL Does Not Exist"
         erb :error
       end
-
     end
 
     get '/sources/:identifier/events' do |identifier|
@@ -94,12 +81,27 @@ module TrafficSpy
       end
     end
 
+    # OLD ONE
+    # get '/sources/:identifier/events/:eventname' do |identifier, eventname|
+    #   Source.find_by_identifier(identifier)
+    #   event = EventDetails.new(identifier, eventname)
+    #   @reception_times = event.hours
+    #   @reception_total = event.receptions
+    #   erb :eventdetails
+    # end
+
+
     get '/sources/:identifier/events/:eventname' do |identifier, eventname|
       Source.find_by_identifier(identifier)
       event = EventDetails.new(identifier, eventname)
-      @reception_times = event.hours
-      @reception_total = event.receptions
-      erb :eventdetails
+      if event.event_exists?
+        @reception_times = event.hours
+        @reception_total = event.receptions
+        erb :eventdetails
+      else
+        @error_message = "This event does not exist."
+        erb :eventback
+      end
     end
 
     not_found do

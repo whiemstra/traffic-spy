@@ -51,4 +51,10 @@ class EventDetailsTest < Minitest::Test
       )
   end
 
+  def test_it_errors_in_nonexistent_events
+    visit '/sources/turing/events/divbyzero'
+    assert page.has_content? "The event doesn't exist."
+    assert page.has_content? "Back to Events Index"
+  end
+
 end

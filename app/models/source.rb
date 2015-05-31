@@ -1,6 +1,6 @@
 
 class Source < ActiveRecord::Base
-  validates :identifier, presence: true, uniqueness: true
+  validates :identifier, presence: true, uniqueness: { case_sensitive: false }
   validates :rooturl, presence: true
 
   has_many :payloads

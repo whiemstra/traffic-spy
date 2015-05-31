@@ -3,7 +3,7 @@ class Payload < ActiveRecord::Base
   belongs_to :event
   belongs_to :url_stat
 
-  validates :payhash, presence: true, uniqueness: true
+  validates :payhash, presence: true, uniqueness: { case_sensitive: false }
 
   def parse_payload!(payload_hash)
     self.url = payload_hash["url"]
