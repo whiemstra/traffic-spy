@@ -49,7 +49,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.6.1)
+    minitest (5.7.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     parallel (1.6.0)
@@ -104,13 +104,13 @@ GEM
       sinatra (>= 1.2.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    unparser (0.2.3)
+    unparser (0.2.4)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
       concord (~> 0.1.5)
       diff-lcs (~> 1.2.5)
       equalizer (~> 0.0.9)
-      parser (~> 2.2.2, >= 2.2.2.2)
+      parser (~> 2.2.2)
       procto (~> 0.0.2)
     useragent (0.13.3)
     xpath (2.0.0)
@@ -138,3 +138,6 @@ DEPENDENCIES
   tilt
   tux
   useragent
+
+BUNDLED WITH
+   1.10.2
