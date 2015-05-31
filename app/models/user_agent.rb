@@ -1,7 +1,6 @@
 require 'pry'
 
-class Agent < ActiveRecord::Base
-  has_many :payloads
+class Agent
   attr_reader :identifier
 
   def initialize(identifier)
@@ -14,8 +13,6 @@ class Agent < ActiveRecord::Base
       grouped_browsers = parsed_agents.group_by { |agent| agent.browser }
       sorted_browsers = grouped_browsers.map { |browser, payloads| [browser, payloads.length] }
       sorted_browsers.sort_by { |pair| pair[1] }
-    # else
-    #   { status: 403, body: "Application Not Registered" }
     end
   end
 
@@ -25,8 +22,6 @@ class Agent < ActiveRecord::Base
       grouped_platforms = parsed_agents.group_by { |agent| agent.platform }
       sorted_platforms = grouped_platforms.map { |platform, payloads| [platform, payloads.length] }
       sorted_platforms.sort_by { |pair| pair[1] }
-    # else
-    #   { status: 403, body: "Application Not Registered" }
     end
   end
 
@@ -36,8 +31,6 @@ class Agent < ActiveRecord::Base
       grouped_browsers = parsed_agents.group_by { |agent| agent.browser }
       sorted_browsers = grouped_browsers.map { |browser, payloads| [browser, payloads.length] }
       sorted_browsers.sort_by { |pair| pair[1] }
-    # else
-    #   { status: 403, body: "Application Not Registered" }
     end
   end
 
@@ -47,9 +40,6 @@ class Agent < ActiveRecord::Base
       grouped_platforms = parsed_agents.group_by { |agent| agent.platform }
       sorted_platforms = grouped_platforms.map { |platform, payloads| [platform, payloads.length] }
       sorted_platforms.sort_by { |pair| pair[1] }
-    # else
-    #   { status: 403, body: "Application Not Registered" }
     end
-
   end
 end

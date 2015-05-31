@@ -80,7 +80,7 @@ module TrafficSpy
         erb :eventindex
       end
     end
-    
+
     get '/sources/:identifier/events/:eventname' do |identifier, eventname|
       Source.find_by_identifier(identifier)
       event = EventDetails.new(identifier, eventname)

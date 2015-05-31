@@ -1,7 +1,6 @@
 require 'pry'
 
-class ApplicationDetails < ActiveRecord::Base
-  has_many :payloads
+class ApplicationDetails
   attr_reader :identifier
 
   def initialize(identifier)

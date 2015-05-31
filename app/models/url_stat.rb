@@ -1,9 +1,6 @@
 require 'pry'
 
-class UrlStat < ActiveRecord::Base
-  has_many :payloads
-  belongs_to :source
-
+class UrlStat
   attr_reader :source,
               :full_url,
               :result,
