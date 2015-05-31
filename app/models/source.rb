@@ -4,5 +4,6 @@ class Source < ActiveRecord::Base
   validates :rooturl, presence: true
 
   has_many :payloads
+  has_many :url_stats
 end
 

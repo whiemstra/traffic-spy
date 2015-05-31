@@ -45,4 +45,3 @@ class PayloadValidator #< Payload
 
 
 end
-

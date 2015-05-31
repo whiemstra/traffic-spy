@@ -25,27 +25,82 @@ module TrafficSpy
     end
 
     get '/sources/:identifier' do |identifier|
-      source = Source.find_by_identifier(identifier)
+      if source = Source.find_by_identifier(identifier)
+        url = ApplicationDetails.new(identifier)
+        agent = Agent.new(identifier)
 
-      url = ApplicationDetails.new(identifier)
-      @sorted_urls = url.requested_urls
-      erb :appdetails
+        @sorted_screen_res = url.screen_resolution
+
+        @sorted_urls = url.requested_urls
+        @sorted_urls.each { |info| info << info[0].gsub(source.rooturl, "") }
+        @sorted_response_times = url.sorted_response_times
+        @sorted_browsers = agent.incoming_browsers
+        @sorted_platforms = agent.incoming_platforms
+
+        erb :appdetails
+      else
+        @error_message = "Application Not Registered"
+        erb :error
+      end
+
     end
 
-    # get '/sources/:identifier/url/(:relative_path)' do |identifier, relative_path|   #dynamic route segments (article/1)
-    #   source = Source.find_by_identifier(identifier)
-    #   full_url = "#{source.rooturl}/#{relative_path}"
-    #   payloads_for_url = source.payloads.where(url: full_url).all
-    #
-    #   # payloads_for_url are all the payloads matching the URL.
-    # end
-    #
-    # get '/sources/:identifier/events/:eventname' do |identifier, eventname|
-    #   source = Source.find_by_identifier(identifier)
-    #   payloads_for_event = source.payloads.where(event_name: eventname).all
-    #
-    #   # payloads_for_event are all the payloads matching the event name.
-    # end
+    get '/sources/:identifier/events' do |identifier|
+      url = ApplicationDetails.new(identifier)
+      @event_count = url.count_events
+      if @event_count[0].nil?
+        @error_message = "Sorry, there are no events."
+        erb :error
+      else
+        erb :eventindex
+      end
+    end
+
+
+    get '/sources/:identifier/urls/*' do |identifier, splat|   #dynamic route segments (article/1)
+      source = Source.find_by_identifier(identifier)
+
+      url = UrlStat.new(source, splat)
+      agent = Agent.new(identifier)
+
+
+      if url.verify_path_exists?
+        @longest_resp_time = url.longest_response_time
+        @shortest_resp_time = url.shortest_response_time
+        @average_resp_time = url.average_response_time
+
+        @payload_request_types = url.request_types
+
+        @referrers = url.popular_referrers
+        @user_agent_browsers = agent.popular_user_agent_browsers
+        @user_agent_platforms = agent.popular_user_agent_platforms
+
+        erb :relative_url_path
+      else
+        @error_message = "Relative URL Does Not Exist"
+        erb :error
+      end
+
+    end
+
+    get '/sources/:identifier/events' do |identifier|
+      url = ApplicationDetails.new(identifier)
+      @event_count = url.count_events
+      if @event_count[0].nil?
+        @error_message = "Sorry, there are no events."
+        erb :error
+      else
+        erb :eventindex
+      end
+    end
+
+    get '/sources/:identifier/events/:eventname' do |identifier, eventname|
+      Source.find_by_identifier(identifier)
+      event = EventDetails.new(identifier, eventname)
+      @reception_times = event.hours
+      @reception_total = event.receptions
+      erb :eventdetails
+    end
 
     not_found do
       erb :error
@@ -53,4 +108,3 @@ module TrafficSpy
 
   end
 end
-
