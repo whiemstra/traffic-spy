@@ -13,9 +13,9 @@ class Agent < ActiveRecord::Base
       parsed_agents = identified_source.payloads.map { |payload| UserAgent.parse(payload[:user_agent]) }
       grouped_browsers = parsed_agents.group_by { |agent| agent.browser }
       sorted_browsers = grouped_browsers.map { |browser, payloads| [browser, payloads.length] }
-      descending_browsers = sorted_browsers.sort_by { |pair| pair[1] }
-    else
-      { status: 403, body: "Application Not Registered" }
+      sorted_browsers.sort_by { |pair| pair[1] }
+    # else
+    #   { status: 403, body: "Application Not Registered" }
     end
   end
 
@@ -24,9 +24,9 @@ class Agent < ActiveRecord::Base
       parsed_agents = identified_source.payloads.map { |payload| UserAgent.parse(payload[:user_agent]) }
       grouped_platforms = parsed_agents.group_by { |agent| agent.platform }
       sorted_platforms = grouped_platforms.map { |platform, payloads| [platform, payloads.length] }
-      descending_platforms = sorted_platforms.sort_by { |pair| pair[1] }
-    else
-      { status: 403, body: "Application Not Registered" }
+      sorted_platforms.sort_by { |pair| pair[1] }
+    # else
+    #   { status: 403, body: "Application Not Registered" }
     end
   end
 
@@ -35,9 +35,9 @@ class Agent < ActiveRecord::Base
       parsed_agents = identified_source.payloads.map { |payload| UserAgent.parse(payload[:user_agent]) }
       grouped_browsers = parsed_agents.group_by { |agent| agent.browser }
       sorted_browsers = grouped_browsers.map { |browser, payloads| [browser, payloads.length] }
-      descending_browsers = sorted_browsers.sort_by { |pair| pair[1] }
-    else
-      { status: 403, body: "Application Not Registered" }
+      sorted_browsers.sort_by { |pair| pair[1] }
+    # else
+    #   { status: 403, body: "Application Not Registered" }
     end
   end
 
@@ -46,9 +46,9 @@ class Agent < ActiveRecord::Base
       parsed_agents = identified_source.payloads.map { |payload| UserAgent.parse(payload[:user_agent]) }
       grouped_platforms = parsed_agents.group_by { |agent| agent.platform }
       sorted_platforms = grouped_platforms.map { |platform, payloads| [platform, payloads.length] }
-      descending_platforms = sorted_platforms.sort_by { |pair| pair[1] }
-    else
-      { status: 403, body: "Application Not Registered" }
+      sorted_platforms.sort_by { |pair| pair[1] }
+    # else
+    #   { status: 403, body: "Application Not Registered" }
     end
 
   end

@@ -25,19 +25,19 @@ module TrafficSpy
     end
 
     get '/sources/:identifier' do |identifier|
-      source = Source.find_by_identifier(identifier)
-      url = ApplicationDetails.new(identifier)
-      agent = Agent.new(identifier)
+      if source = Source.find_by_identifier(identifier)
+        url = ApplicationDetails.new(identifier)
+        agent = Agent.new(identifier)
 
-      @sorted_screen_res = url.screen_resolution
+        @sorted_screen_res = url.screen_resolution
 
-      @sorted_urls = url.requested_urls
-      @sorted_urls.each { |info| info << info[0].gsub(source.rooturl, "") }
-      @sorted_response_times = url.sorted_response_times
-      @sorted_browsers = agent.incoming_browsers
-      @sorted_platforms = agent.incoming_platforms
+        @sorted_urls = url.requested_urls
+        @sorted_urls.each { |info| info << info[0].gsub(source.rooturl, "") }
+        #binding.pry
+        @sorted_response_times = url.sorted_response_times
+        @sorted_browsers = agent.incoming_browsers
+        @sorted_platforms = agent.incoming_platforms
 
-      if Source.find_by_identifier(identifier)
         erb :appdetails
       else
         @error_message = "Application Not Registered"
@@ -45,26 +45,6 @@ module TrafficSpy
       end
 
     end
-
-
-
-    # get '/sources/:identifier' do |identifier|
-    #   source = Source.find_by_identifier(identifier)
-    #   url = ApplicationDetails.new(identifier)
-    #   agent = Agent.new(identifier)
-    #   @sorted_urls = url.requested_urls
-    #   @sorted_urls.each { |info| info << info[0].gsub(source.rooturl, "") }
-    #   @sorted_response_times = url.sorted_response_times
-    #   @sorted_browsers = agent.incoming_browsers
-    #   @sorted_platforms = agent.incoming_platforms
-    #   erb :appdetails
-    # end
-
-
-
-
-
-
 
     get '/sources/:identifier/events' do |identifier|
       url = ApplicationDetails.new(identifier)
@@ -97,7 +77,6 @@ module TrafficSpy
 
         erb :relative_url_path
       else
-        url.show_error
         @error_message = "Relative URL Does Not Exist"
         erb :error
       end

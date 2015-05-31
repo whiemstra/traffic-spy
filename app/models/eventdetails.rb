@@ -13,7 +13,7 @@ class EventDetails < ActiveRecord::Base
     if source = Source.find_by_identifier(identifier)
       if source.payloads.find_by_event_name(eventname)
         event = source.payloads.select(:event_name == eventname)
-        times = event.group_by { |payload| payload.requested_at.hour }
+        event.group_by { |payload| payload.requested_at.hour }
       else
         { status: 403, body: "Event Not Existent" }
       end
@@ -26,7 +26,7 @@ class EventDetails < ActiveRecord::Base
     if source = Source.find_by_identifier(identifier)
       if source.payloads.find_by_event_name(eventname)
         event = source.payloads.select(:event_name == eventname)
-        hits = event.length
+        event.length
       else
         { status: 403, body: "Event Not Existent" }
       end

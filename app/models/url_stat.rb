@@ -22,19 +22,9 @@ class UrlStat < ActiveRecord::Base
     end
   end
 
-  def show_error
-    {status: 403, body: "URL Not Requested"}
-  end
-
-  # def payloads_for_url
-  #   source.payloads.where(url: full_url).all
-  # end
-
   def longest_response_time
     if @source.payloads.find_by_url(full_url)
       @source.payloads.maximum(:responded_in)
-    # else
-    #   0
     end
   end
 
@@ -55,8 +45,6 @@ class UrlStat < ActiveRecord::Base
       grouped_request_types = @source.payloads.group_by { |payload| payload[:request_type] }
       sorted_urls = grouped_request_types.map { |request_type, payloads| [request_type, payloads.length] }
       sorted_urls.sort_by { |pair| pair[1] }.reverse
-    else
-      { status: 403, body: "URL Not Found"}
     end
   end
 
@@ -65,8 +53,6 @@ class UrlStat < ActiveRecord::Base
       grouped_referrers = @source.payloads.group_by { |payload| payload[:referred_by] }
       sorted_urls = grouped_referrers.map { |referrer, payloads| [referrer, payloads.length] }
       sorted_urls.sort_by { |pair| pair[1] }.reverse
-    else
-      { status: 403, body: "URL Not Found"}
     end
   end
 
