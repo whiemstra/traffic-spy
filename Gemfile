@@ -25,3 +25,14 @@ group :evaluations do
   gem 'reek'
   gem 'rake'
 end
+
+group :production do
+  gem 'sinatra', require: 'sinatra/base'
+  gem 'pg'
+  gem 'activerecord'
+  gem 'sinatra-activerecord'
+  gem 'useragent'
+  gem 'pry'
+  gem 'simplecov'
+  gem 'tilt', '1.3.4'
+end
