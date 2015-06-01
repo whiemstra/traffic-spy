@@ -38,13 +38,13 @@ class ApplicationUrlStatsTest < Minitest::Test
   end
 
   def test_for_each_specific_url_it_displays_shortest_response_time
-    visit '/sources/turing/urls/team'
-    assert page.has_content?('37')
+    visit '/sources/turing/urls/admissions'
+    assert page.has_content?('40')
   end
 
   def test_for_each_specific_url_it_displays_average_response_time
     visit '/sources/turing/urls/admissions'
-    assert page.has_content?('66.6')
+    assert page.has_content?('78.3')
   end
 
   def test_when_one_http_verb_has_been_used

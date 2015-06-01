@@ -1,36 +1,45 @@
 require 'json'
 require 'pry'
 
-class PayloadValidator #< Payload
+class PayloadValidator
   attr_reader :identifier,
               :result
 
   def initialize(data, identifier)
-    @hashed = Digest::SHA1.hexdigest(data)
+    @cataloged_payload = Digest::SHA1.hexdigest(data)
     @data = JSON.parse(data)
     @identifier = identifier
   end
 
+  def identified_source
+    Source.find_by_identifier(identifier)
+  end
+
+  def incoming_payload
+    if identified_source.payloads.find_by_fingerprint(@cataloged_payload)
+      @result = { status: 403, body: "Already Received Request" }
+    else
+      identified_source.payloads.create(normalized_payload)
+      @result = { status: 200, body: "Success"}
+    end
+  end
+
   def validate
-    if identified_source = Source.find_by_identifier(identifier)
-      if identified_source.payloads.find_by_payhash(@hashed)
-        @result = { status: 403, body: "Already Received Request" }
-      else
-        identified_source.payloads.create(normalized_payload)
-        @result = { status: 200, body: "Success"}
-      end
+    if identified_source
+      incoming_payload
     else
       @result = { status: 403, body: "Application Not Registered"}
     end
     @result
   end
 
+
   private
 
   def normalized_payload
     {
       :url => @data["url"],
-      :requested_at => DateTime.parse(@data["requestedAt"]).utc, # FYI - ActiveRecord all values in DB stored in UTC
+      :requested_at => DateTime.parse(@data["requestedAt"]).utc,
       :responded_in => @data["respondedIn"],
       :referred_by => @data["referredBy"],
       :request_type => @data["requestType"],
@@ -39,7 +48,7 @@ class PayloadValidator #< Payload
       :resolution_width => @data["resolutionWidth"],
       :resolution_height => @data["resolutionHeight"],
       :ip => @data["ip"],
-      :payhash => @hashed
+      :fingerprint => @cataloged_payload
     }
   end
 

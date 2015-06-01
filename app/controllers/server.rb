@@ -1,7 +1,7 @@
 require  'digest/sha1'
 require 'pry'
-require_relative '../models/url'
 require_relative '../models/user_agent'
+require_relative '../models/application_details'
 
 module TrafficSpy
   class Server < Sinatra::Base
@@ -46,10 +46,10 @@ module TrafficSpy
 
     end
 
-    get '/sources/:identifier/urls/*' do |identifier, splat|   #dynamic route segments (article/1)
+    get '/sources/:identifier/urls/*' do |identifier, splat|
       source = Source.find_by_identifier(identifier)
 
-      url = UrlStat.new(source, splat)
+      url = UrlStats.new(source, splat)
       agent = Agent.new(identifier)
 
 
@@ -73,7 +73,12 @@ module TrafficSpy
 
     get '/sources/:identifier/events' do |identifier|
       url = ApplicationDetails.new(identifier)
-      @event_count = url.count_events
+      if source = Source.find_by_identifier(identifier)
+        @event_count = url.count_events
+      else
+        @error_message = "Sorry, there are no events."
+        erb :error
+      end
       if @event_count[0].nil?
         @error_message = "Sorry, there are no events."
         erb :error
@@ -87,7 +92,7 @@ module TrafficSpy
       event = EventDetails.new(identifier, eventname)
       if event.event_exists?
         @reception_times = event.hours
-        @reception_total = event.receptions
+        @reception_total = event.received_events
         erb :eventdetails
       else
         @error_message = "This event does not exist."

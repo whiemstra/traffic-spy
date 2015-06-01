@@ -30,7 +30,7 @@ class PayloadValidatorTest < Minitest::Test
 
     payload_obj = Payload.first
 
-    assert_equal Digest::SHA1.hexdigest(string_payload), payload_obj.payhash
+    assert_equal Digest::SHA1.hexdigest(string_payload), payload_obj.fingerprint
     assert_equal "http://jumpstartlab.com/blog", payload_obj.url
     assert_equal DateTime.parse("2013-02-16 21:38:28 -0700"), payload_obj.requested_at
     assert_equal 37, payload_obj.responded_in

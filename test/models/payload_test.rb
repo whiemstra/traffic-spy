@@ -2,7 +2,7 @@ require_relative '../test_helper'
 
 class PayloadTest < Minitest::Test
 
-  def parsed_payload
+  def formatted_payload
    JSON.parse('{
       "url":"http://jumpstartlab.com/blog",
       "requestedAt":"2013-02-16 21:38:28 -0700",
@@ -19,10 +19,10 @@ class PayloadTest < Minitest::Test
   end
 
   def test_incoming_payload_attributes_get_temp_assigned
-    payload_hash = self.parsed_payload
+    payload = self.formatted_payload
 
     obj = Payload.new
-    obj.parse_payload!(payload_hash)
+    obj.parse_payload!(payload)
 
     assert_equal "http://jumpstartlab.com/blog", obj.url
     assert_equal DateTime.parse("2013-02-16 21:38:28 -0700"), obj.requested_at

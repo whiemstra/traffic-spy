@@ -3,19 +3,18 @@ class Payload < ActiveRecord::Base
   belongs_to :event
   belongs_to :url_stat
 
-  validates :payhash, presence: true, uniqueness: { case_sensitive: false }
+  validates :fingerprint, presence: true, uniqueness: true
 
-  def parse_payload!(payload_hash)
-    self.url = payload_hash["url"]
-    self.requested_at = DateTime.parse(payload_hash["requestedAt"]).utc # FYI - ActiveRecord all values in DB stored in UTC
-    self.responded_in = payload_hash["respondedIn"]
-    self.referred_by = payload_hash["referredBy"]
-    self.request_type = payload_hash["requestType"]
-    self.event_name = payload_hash["eventName"]
-    self.user_agent = payload_hash["userAgent"]
-    self.resolution_width = payload_hash["resolutionWidth"]
-    self.resolution_height = payload_hash["resolutionHeight"]
-    self.ip = payload_hash["ip"]
+  def parse_payload!(formatted_payload)
+    self.url = formatted_payload["url"]
+    self.requested_at = DateTime.parse(formatted_payload["requestedAt"]).utc
+    self.responded_in = formatted_payload["respondedIn"]
+    self.referred_by = formatted_payload["referredBy"]
+    self.request_type = formatted_payload["requestType"]
+    self.event_name = formatted_payload["eventName"]
+    self.user_agent = formatted_payload["userAgent"]
+    self.resolution_width = formatted_payload["resolutionWidth"]
+    self.resolution_height = formatted_payload["resolutionHeight"]
+    self.ip = formatted_payload["ip"]
   end
 end
-
