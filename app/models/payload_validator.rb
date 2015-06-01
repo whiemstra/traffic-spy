@@ -11,19 +11,28 @@ class PayloadValidator
     @identifier = identifier
   end
 
+  def identified_source
+    Source.find_by_identifier(identifier)
+  end
+
+  def incoming_payload
+    if identified_source.payloads.find_by_fingerprint(@cataloged_payload)
+      @result = { status: 403, body: "Already Received Request" }
+    else
+      identified_source.payloads.create(normalized_payload)
+      @result = { status: 200, body: "Success"}
+    end
+  end
+
   def validate
-    if identified_source = Source.find_by_identifier(identifier)
-      if identified_source.payloads.find_by_fingerprint(@cataloged_payload)
-        @result = { status: 403, body: "Already Received Request" }
-      else
-        identified_source.payloads.create(normalized_payload)
-        @result = { status: 200, body: "Success"}
-      end
+    if identified_source
+      incoming_payload
     else
       @result = { status: 403, body: "Application Not Registered"}
     end
     @result
   end
+  
 
   private
 
