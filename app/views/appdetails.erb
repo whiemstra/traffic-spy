@@ -37,7 +37,9 @@
       <h6>Screen Resolutions</h6>
       <ol>
         <% @sorted_screen_res.each do |resolution| %>
-          <li><%= "#{resolution[0][0]} x #{resolution[0][1]} : #{resolution[1] }" %></li>
+          <li>
+            <%= "#{resolution[0][0]} x #{resolution[0][1]} : #{resolution[1] }" %>
+          </li>
         <% end %>
       </ol>
 </div>

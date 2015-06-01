@@ -18,8 +18,10 @@ class ApplicationDetails
   end
 
   def screen_resolution
-    grouped_screen_res = identified_source.payloads.group_by { |payload| [payload[:resolution_width], payload[:resolution_height]] }
-    sorted_urls = grouped_screen_res.map { |resolution, payloads| [resolution, payloads.length] }
+    grouped_screen_res = identified_source.payloads.group_by do |payload|
+      [payload[:resolution_width], payload[:resolution_height]] end
+    sorted_urls = grouped_screen_res.map do |resolution, payloads|
+      [resolution, payloads.length] end
     sorted_urls.sort_by { |pair| [pair[1], pair[0]] }
   end
 
@@ -29,7 +31,8 @@ class ApplicationDetails
   end
 
   def count_events
-    grouped_events = identified_source.payloads.group_by { |payload| payload[:event_name] }
+    grouped_events = identified_source.payloads.group_by do |payload|
+      payload[:event_name] end
     sorted_events = grouped_events.map { |url, payloads| [url, payloads.length] }
     sorted_events.sort_by { |pair| pair[1] }.reverse
   end

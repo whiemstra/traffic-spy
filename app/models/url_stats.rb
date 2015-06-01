@@ -30,7 +30,6 @@ class UrlStats
       @source.payloads.where(url: full_url).minimum(:responded_in)
     end
   end
-
   def average_response_time
     if verify_path_exists?
       @source.payloads.where(url: full_url).average(:responded_in)
@@ -39,16 +38,24 @@ class UrlStats
 
   def request_types
     if verify_path_exists?
-      grouped_request_types = @source.payloads.group_by { |payload| payload[:request_type] }
-      sorted_urls = grouped_request_types.map { |request_type, payloads| [request_type, payloads.length] }
+      grouped_request_types = @source.payloads.group_by do |payload|
+        payload[:request_type]
+      end
+      sorted_urls = grouped_request_types.map do |request_type, payloads|
+        [request_type, payloads.length]
+      end
       sorted_urls.sort_by { |pair| pair[1] }.reverse
     end
   end
 
   def popular_referrers
     if verify_path_exists?
-      grouped_referrers = @source.payloads.group_by { |payload| payload[:referred_by] }
-      sorted_urls = grouped_referrers.map { |referrer, payloads| [referrer, payloads.length] }
+      grouped_referrers = @source.payloads.group_by do
+        |payload| payload[:referred_by]
+      end
+      sorted_urls = grouped_referrers.map do |referrer, payloads|
+        [referrer, payloads.length]
+      end
       sorted_urls.sort_by { |pair| pair[1] }.reverse
     end
   end
