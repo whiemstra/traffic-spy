@@ -73,12 +73,6 @@ module TrafficSpy
 
     get '/sources/:identifier/events' do |identifier|
       url = ApplicationDetails.new(identifier)
-      if source = Source.find_by_identifier(identifier)
-        @event_count = url.count_events
-      else
-        @error_message = "Sorry, there are no events."
-        erb :error
-      end
       if @event_count[0].nil?
         @error_message = "Sorry, there are no events."
         erb :error
