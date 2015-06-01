@@ -40,3 +40,10 @@ footer {
   margin:       0%;
   opacity:      .8;
 }
+
+.footer {
+  text-align: center;
+  position:     fixed;
+  margin:       0%;
+  opacity:      .8;
+}

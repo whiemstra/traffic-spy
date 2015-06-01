@@ -8,6 +8,7 @@ gem 'useragent'
 gem 'pry'
 gem 'simplecov'
 gem 'tilt', '1.3.4'
+gem 'sinatra-partial', require: 'sinatra/partial'
 
 group :development, :test do
   gem 'shotgun'
