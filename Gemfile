@@ -8,9 +8,7 @@ gem 'useragent'
 gem 'pry'
 gem 'simplecov'
 gem 'tilt', '1.3.4'
-gem 'cane'
-gem 'reek'
-gem 'rake'
+gem 'sinatra-partial', require: 'sinatra/partial'
 
 group :development, :test do
   gem 'shotgun'
@@ -24,7 +22,7 @@ end
 
 group :evaluations do
   # THIS SPACE RESERVED FOR EVALUATIONS
-  # gem 'cane'
-  # gem 'reek'
-  # gem 'rake'
+  gem 'cane'
+  gem 'reek'
+  gem 'rake'
 end
