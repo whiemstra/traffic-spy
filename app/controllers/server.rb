@@ -2,11 +2,17 @@ require  'digest/sha1'
 require 'pry'
 require_relative '../models/user_agent'
 require_relative '../models/application_details'
+require_relative '../models/source'
 
 module TrafficSpy
   class Server < Sinatra::Base
     get '/' do
       erb :index
+    end
+
+    get '/sources' do
+      @sources = Source.all
+      erb :sources
     end
 
     post '/sources' do

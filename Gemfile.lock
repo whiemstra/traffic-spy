@@ -141,3 +141,6 @@ DEPENDENCIES
   tilt (= 1.3.4)
   tux
   useragent
+
+BUNDLED WITH
+   1.10.2

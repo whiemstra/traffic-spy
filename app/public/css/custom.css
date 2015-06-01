@@ -1,5 +1,5 @@
 body {
-    background-color: #CAE1FF;	
+    background-color: #CAE1FF;
     background-image: url('../images/blur.jpg');
     position: absolute;
     top: 50%;
@@ -36,7 +36,7 @@ body {
 footer {
   text-align: center;
   position:     fixed;
-  bottom:       -350%;
+  bottom:       -300%;
   margin:       0%;
   opacity:      .8;
 }
@@ -44,6 +44,14 @@ footer {
 .footer {
   text-align: center;
   position:     fixed;
+  bottom:     -150%;
   margin:       0%;
   opacity:      .8;
+}
+
+.pure-button {
+  text-align: center;
+  font-size: 150%;
+  margin-top: 20px;
+  margin-left: 50px;
 }
