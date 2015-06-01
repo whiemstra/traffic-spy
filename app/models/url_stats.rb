@@ -38,7 +38,7 @@ class UrlStats
   end
 
   def request_types
-    if @source.payloads.find_by_url(full_url)
+    if verify_path_exists?
       grouped_request_types = @source.payloads.group_by { |payload| payload[:request_type] }
       sorted_urls = grouped_request_types.map { |request_type, payloads| [request_type, payloads.length] }
       sorted_urls.sort_by { |pair| pair[1] }.reverse
@@ -46,7 +46,7 @@ class UrlStats
   end
 
   def popular_referrers
-    if @source.payloads.find_by_url(full_url)
+    if verify_path_exists?
       grouped_referrers = @source.payloads.group_by { |payload| payload[:referred_by] }
       sorted_urls = grouped_referrers.map { |referrer, payloads| [referrer, payloads.length] }
       sorted_urls.sort_by { |pair| pair[1] }.reverse

@@ -86,7 +86,7 @@ module TrafficSpy
       event = EventDetails.new(identifier, eventname)
       if event.event_exists?
         @reception_times = event.hours
-        @reception_total = event.receptions
+        @reception_total = event.received_events
         erb :eventdetails
       else
         @error_message = "This event does not exist."

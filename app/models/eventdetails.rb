@@ -22,7 +22,7 @@ class EventDetails
     event.group_by { |payload| payload.requested_at.hour }
   end
 
-  def receptions
+  def received_events
     single_source.payloads.find_by_event_name(eventname)
     event = single_source.payloads.select(:event_name == eventname)
     event.length

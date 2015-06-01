@@ -32,7 +32,7 @@ class PayloadValidator
     end
     @result
   end
-  
+
 
   private
 
